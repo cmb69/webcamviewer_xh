@@ -1,0 +1,5 @@
+TODO:
+    i18n for image errors
+
+Version 1beta1 - released 2012-04-07
+cmb	initial release
