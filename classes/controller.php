@@ -148,10 +148,14 @@ class Webcamviewer_Controller
     function init()
     {
         global $hjs, $onload, $plugin_cf;
+        static $again = false;
 
-        $bag = array('interval' => $plugin_cf['webcamviewer']['interval']);
-        $hjs .= $this->_render('script', $bag);
-        $onload .= "webcamviewer.init();";
+        if (!$again) {
+            $again = true;
+            $bag = array('interval' => $plugin_cf['webcamviewer']['interval']);
+            $hjs .= $this->_render('script', $bag);
+            $onload .= "webcamviewer.init();";
+        }
     }
 
 }
