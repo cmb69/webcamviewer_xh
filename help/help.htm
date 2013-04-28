@@ -13,7 +13,7 @@
 <h1>Webcamviewer_XH - a CMSimple_XH Plugin</h1>
 <p style="text-align: justify"><img src="../webcamviewer.png" style="display:
 block; float: left; margin-right: 16px" alt="Plugin Icon"> Webcamviewer_XH
-facilitates displaying an image, that will be refreshed after some customizable
+facilitates displaying an image that will be refreshed after some customizable
 interval. Its intended use is to display the current snapshot of a webcam, which
 places the most recent image in the same place.</p>
 
@@ -40,7 +40,7 @@ is a so called BETA version. Use with caution!</strong></p>
 
 <h2><a name="requirements">Requirements</a></h2>
 <p>Webcamviewer_XH is a plugin for CMSimple_XH. It requires a UTF-8 encoded
-version. JavaScript has to be enabled in the visitors browser to let the images
+version. JavaScript has to be enabled in the visitor's browser to let the images
 be automatically refreshed.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
@@ -67,13 +67,12 @@ the options will be displayed when hovering over the help icon with your
 mouse.</p>
 <p>Localization is done in "Language". You can translate the character strings
 to your own language, or customize them according to your needs.</p>
-<p>The look of Webcamviewer_XH can be customized in "Stylesheet".</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <h2><a name="usage">Usage</a></h2>
-<p>To enable Webcamviewer_XH you have to set "autoload" to 1, or if you want to
-save some resources, enable it individually for each page where it's needed, by
-calling:</p>
+<p>To enable Webcamviewer_XH you have to configure "autoload" to 1, or if you
+want to save some resources, insert the following on each page, where you need
+the functionality:</p>
 <pre>{{{PLUGIN:webcamviewer();}}}</pre>
 <p>This will cause every image with class="webcamviewer" to be refreshed
 periodically after the configured interval.</p>
