@@ -1,8 +1,28 @@
 <?php
 
+/**
+ * Controller of Webcamviewer_XH.
+ *
+ * @package    Webcamviewer
+ * @copyright  Copyright (c) 2012-2013 Christoph M. Becker <http://3-magi.net/>
+ * @license    http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
+ * @version    $Id$
+ * @link       http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
+ */
 
+
+/**
+ * The controller class.
+ *
+ * @package  Webcamviewer
+ */
 class Webcamviewer_Controller
 {
+    /**
+     * Constructs a webcamviewer controller.
+     *
+     * @access public
+     */
     function Webcamviewer_Controller()
     {
         global $plugin_cf;
@@ -110,7 +130,7 @@ class Webcamviewer_Controller
     }
 
     /**
-     * Dispatches on Sitemapper related requests.
+     * Dispatches on plugin related requests.
      *
      * @access private
      *
@@ -142,7 +162,10 @@ class Webcamviewer_Controller
      * Activates the webcamviewer.
      *
      * @access public
-     * @global string $hjs
+     *
+     * @global string  (X)HTML to be inserted to the "head" element.
+     * @global string  (X)HTML to be inserted to the "onload" attribute of the "body" element.
+     * @global array  The configuration of the plugins.
      * @return void
      */
     function init()
@@ -157,5 +180,6 @@ class Webcamviewer_Controller
             $onload .= "webcamviewer.init();";
         }
     }
-
 }
+
+?>
