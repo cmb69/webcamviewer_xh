@@ -24,15 +24,16 @@ define('WEBCAMVIEWER_VERSION', '1beta1');
  * @return void
  */
 function webcamviewer() {
-    global $pth, $hjs, $plugin_cf;
+    global $pth, $hjs, $onload, $plugin_cf;
 
-    include_once $pth['folder']['plugins'].'jquery/jquery.inc.php';
-    include_jquery();
+    //include_once $pth['folder']['plugins'].'jquery/jquery.inc.php';
+    //include_jquery();
     $hjs .= <<<SCRIPT
 <script type="text/javascript" src="{$pth['folder']['plugins']}webcamviewer/webcamviewer.js"></script>
 <script type="text/javascript">Webcamviewer.INTERVAL = {$plugin_cf['webcamviewer']['interval']}</script>
 
 SCRIPT;
+    $onload .= "Webcamviewer.init();";
 }
 
 
