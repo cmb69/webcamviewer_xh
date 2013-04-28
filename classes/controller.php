@@ -175,7 +175,8 @@ class Webcamviewer_Controller
 
         if (!$again) {
             $again = true;
-            $bag = array('interval' => $plugin_cf['webcamviewer']['interval']);
+            $interval = 1000 * $plugin_cf['webcamviewer']['interval'];
+            $bag = compact('interval');
             $hjs .= $this->_render('script', $bag);
             $onload .= "webcamviewer.init();";
         }
