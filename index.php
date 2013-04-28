@@ -16,40 +16,16 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 define('WEBCAMVIEWER_VERSION', '1beta1');
 
 
-function Webcamviewer_render($_template, $_bag)
+function webcamviewer()
 {
-    global $pth;
+    global $_Webcamviewer;
 
-    $_template = $pth['folder']['plugins'] . 'webcamviewer/views/' . $_template . '.htm';
-    unset($pth);
-    extract($_bag);
-    ob_start();
-    include $_template;
-    return ob_get_clean();
+    return $_Webcamviewer->init();
 }
 
 
-/**
- * Activates the webcamviewer.
- *
- * @access public
- * @global string $hjs
- * @return void
- */
-function webcamviewer() {
-    global $hjs, $onload, $plugin_cf;
+require $pth['folder']['plugin_classes'] . 'controller.php';
 
-    $bag = array('interval' => $plugin_cf['webcamviewer']['interval']);
-    $hjs .= Webcamviewer_render('script', $bag);
-    $onload .= "webcamviewer.init();";
-}
-
-
-/**
- * Handle autoloading.
- */
-if ($plugin_cf['webcamviewer']['autoload']) {
-    webcamviewer();
-}
+$_Webcamviewer = new Webcamviewer_Controller();
 
 ?>
