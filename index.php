@@ -16,6 +16,19 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 define('WEBCAMVIEWER_VERSION', '1beta1');
 
 
+function Webcamviewer_render($_template, $_bag)
+{
+    global $pth;
+
+    $_template = $pth['folder']['plugins'] . 'webcamviewer/views/' . $_template . '.htm';
+    unset($pth);
+    extract($_bag);
+    ob_start();
+    include $_template;
+    return ob_get_clean();
+}
+
+
 /**
  * Activates the webcamviewer.
  *
@@ -24,16 +37,11 @@ define('WEBCAMVIEWER_VERSION', '1beta1');
  * @return void
  */
 function webcamviewer() {
-    global $pth, $hjs, $onload, $plugin_cf;
+    global $hjs, $onload, $plugin_cf;
 
-    //include_once $pth['folder']['plugins'].'jquery/jquery.inc.php';
-    //include_jquery();
-    $hjs .= <<<SCRIPT
-<script type="text/javascript" src="{$pth['folder']['plugins']}webcamviewer/webcamviewer.js"></script>
-<script type="text/javascript">Webcamviewer.INTERVAL = {$plugin_cf['webcamviewer']['interval']}</script>
-
-SCRIPT;
-    $onload .= "Webcamviewer.init();";
+    $bag = array('interval' => $plugin_cf['webcamviewer']['interval']);
+    $hjs .= Webcamviewer_render('script', $bag);
+    $onload .= "webcamviewer.init();";
 }
 
 

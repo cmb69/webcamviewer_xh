@@ -1,0 +1,30 @@
+<!-- Webcamviewer_XH: JavaScript -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var webcamviewer = {}
+webcamviewer.images = [];
+webcamviewer.urls = [];
+webcamviewer.init = function() {
+    var images = document.images,
+        i, count, image;
+    for (i = 0, count = images.length; i < count; i++) {
+        image = images[i];
+        if (/(^|\s)webcamviewer($|\s)/.test(image.className)) {
+            webcamviewer.images.push(image);
+            webcamviewer.urls.push(image.src);
+        }
+    }
+    window.setInterval(webcamviewer.refresh, <?php echo $interval;?>);
+}
+webcamviewer.refresh = function() {
+    var i, count, image, url, separator, appendix;
+    for (i = 0, count = webcamviewer.images.length; i < count; i++) {
+        image = webcamviewer.images[i];
+        url = webcamviewer.urls[i];
+        separator = url.indexOf("?") < 0 ? "?" : "&";
+        appendix = "qwerty=" + new Date().valueOf();
+        image.src =  url + separator + appendix;
+    }
+}
+/* ]]> */
+</script>
