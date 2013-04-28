@@ -3,11 +3,11 @@ SVN=svn
 
 .PHONY: pci
 pci:
-	$(PHPCI) -id pcidirs.txt -d .
+	$(PHPCI) -d .
 
 .PHONY: export
 export:
 	$(SVN) export -q . webcamviewer/
-	rm -rf webcamviewer/webcamviewer.komodoproject webcamviewer/Makefile webcamviewer/pcidirs.txt
+	rm -rf webcamviewer/webcamviewer.komodoproject webcamviewer/Makefile
 	cp webcamviewer/config/config.php webcamviewer/config/defaultconfig.php
 	cp webcamviewer/languages/en.php webcamviewer/languages/default.php
