@@ -1,2 +1,13 @@
+Version 1beta2 - released 2013-04-29
+cmb     got rid of jQuery
+cmb     got rid of image server script
+cmb     removed config option "folder images" (not needed anymore)
+cmb     changed unit of config option "interval" to seconds
+cmb     removed plugin stylesheet
+cmb     updated English user manual
+cmb     added German localization and user manual
+cmb     added version.nfo
+cmb     refactored to view/controller architecture
+
 Version 1beta1 - released 2012-04-07
 cmb	initial release
