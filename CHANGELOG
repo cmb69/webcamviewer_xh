@@ -1,4 +1,4 @@
-Version 1beta2 - released 2013-04-29
+Version 1beta2 - released 2013-05-01
 cmb     got rid of jQuery
 cmb     got rid of image server script
 cmb     removed config option "folder images" (not needed anymore)
