@@ -38,7 +38,7 @@ class Webcamviewer_Controller
         if ($plugin_cf['webcamviewer']['autoload']) {
             $this->init();
         }
-        $this->_dispatch();
+        $this->dispatch();
     }
 
     /**
@@ -52,7 +52,7 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The configuration of the core.
      */
-    private function _render($_template, $_bag)
+    protected function render($_template, $_bag)
     {
         global $pth, $cf;
 
@@ -79,7 +79,7 @@ class Webcamviewer_Controller
      * @global array The localization of the core.
      * @global array The localization of the plugins.
      */
-    private function _systemChecks()
+    protected function systemChecks()
     {
         global $pth, $tx, $plugin_tx;
 
@@ -115,7 +115,7 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The localization of the plugins.
      */
-    private function _info()
+    protected function info()
     {
         global $pth, $plugin_tx;
 
@@ -128,11 +128,11 @@ class Webcamviewer_Controller
             $images[$state] = $pth['folder']['plugins']
                 . 'webcamviewer/images/' . $state . '.png';
         }
-        $checks = $this->_systemChecks();
+        $checks = $this->systemChecks();
         $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
         $version = WEBCAMVIEWER_VERSION;
         $bag = compact('labels', 'images', 'checks', 'icon', 'version');
-        return $this->_render('info', $bag);
+        return $this->render('info', $bag);
     }
 
     /**
@@ -147,7 +147,7 @@ class Webcamviewer_Controller
      * @global string The (X)HTML to be placed in the contents area.
      * @global string Whether the plugin administration is requested.
      */
-    private function _dispatch()
+    protected function dispatch()
     {
         global $adm, $admin, $action, $plugin, $o, $webcamviewer;
 
@@ -155,7 +155,7 @@ class Webcamviewer_Controller
             $o .= print_plugin_admin('off');
             switch ($admin) {
             case '':
-                $o .= $this->_info();
+                $o .= $this->info();
                 break;
             default:
                 $o .= plugin_admin_common($action, $admin, $plugin);
@@ -184,7 +184,7 @@ class Webcamviewer_Controller
             $again = true;
             $interval = 1000 * $plugin_cf['webcamviewer']['interval'];
             $bag = compact('interval');
-            $hjs .= $this->_render('script', $bag);
+            $hjs .= $this->render('script', $bag);
             $onload .= "webcamviewer.init();";
         }
     }
