@@ -1,26 +1,37 @@
 <?php
 
 /**
- * Controller of Webcamviewer_XH.
+ * The controllers.
  *
- * @package    Webcamviewer
- * @copyright  Copyright (c) 2012-2015 Christoph M. Becker <http://3-magi.net/>
- * @license    http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link       http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
+ * PHP versions 4 and 5
+ *
+ * @category  CMSimple_XH
+ * @package   Webcamviewer
+ * @author    Christoph M. Becker <cmbecker69@gmx.de>
+ * @copyright 2012-2015 Christoph M. Becker <http://3-magi.net/>
+ * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
+ * @link      http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
 
-
 /**
- * The controller class.
+ * The controllers.
  *
+ * @category CMSimple_XH
  * @package  Webcamviewer
+ * @author   Christoph M. Becker <cmbecker69@gmx.de>
+ * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
+ * @link     http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
 class Webcamviewer_Controller
 {
     /**
-     * Constructs a webcamviewer controller.
+     * Initializes a new instance.
+     *
+     * @return void
      *
      * @access public
+     *
+     * @global array The configuration of the plugins.
      */
     function Webcamviewer_Controller()
     {
@@ -35,13 +46,15 @@ class Webcamviewer_Controller
     /**
      * Renders a template.
      *
-     * @access private
+     * @param string $_template A template name.
+     * @param array  $_bag      An array of values available in the template.
      *
-     * @global array  The paths of system files and folders.
-     * @global array  The configuration of the core.
-     * @param  string $_template  The name of the template.
-     * @param  array $_bag  Variables available in the template.
      * @return string
+     *
+     * @global array The paths of system files and folders.
+     * @global array The configuration of the core.
+     *
+     * @access private
      */
     function _render($_template, $_bag)
     {
@@ -64,37 +77,38 @@ class Webcamviewer_Controller
     /**
      * Returns the system checks.
      *
-     * @access private
-     *
-     * @global array  The paths of system files and folders.
-     * @global array  The localization of the core.
-     * @global array  The localization of the plugins.
      * @return array
+     *
+     * @global array The paths of system files and folders.
+     * @global array The localization of the core.
+     * @global array The localization of the plugins.
+     *
+     * @access private
      */
-    function _systemChecks() // RELEASE-TODO
+    function _systemChecks()
     {
         global $pth, $tx, $plugin_tx;
 
         $ptx = $plugin_tx['webcamviewer'];
         $phpVersion = '4.3.0';
         $checks = array();
-        $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)] =
-            version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'ok' : 'fail';
+        $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
+            = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'ok' : 'fail';
         foreach (array() as $ext) {
-            $checks[sprintf($ptx['syscheck_extension'], $ext)] =
-                extension_loaded($ext) ? 'ok' : 'fail';
+            $checks[sprintf($ptx['syscheck_extension'], $ext)]
+                = extension_loaded($ext) ? 'ok' : 'fail';
         }
-        $checks[$ptx['syscheck_magic_quotes']] =
-            !get_magic_quotes_runtime() ? 'ok' : 'fail';
-        $checks[$ptx['syscheck_encoding']] =
-            strtoupper($tx['meta']['codepage']) == 'UTF-8' ? 'ok' : 'warn';
+        $checks[$ptx['syscheck_magic_quotes']]
+            = !get_magic_quotes_runtime() ? 'ok' : 'fail';
+        $checks[$ptx['syscheck_encoding']]
+            = strtoupper($tx['meta']['codepage']) == 'UTF-8' ? 'ok' : 'warn';
         $folders = array();
         foreach (array('config/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
         }
         foreach ($folders as $folder) {
-            $checks[sprintf($ptx['syscheck_writable'], $folder)] =
-                is_writable($folder) ? 'ok' : 'warn';
+            $checks[sprintf($ptx['syscheck_writable'], $folder)]
+                = is_writable($folder) ? 'ok' : 'warn';
         }
         return $checks;
     }
@@ -102,11 +116,12 @@ class Webcamviewer_Controller
     /**
      * Returns the plugin information view.
      *
-     * @access private
+     * @return string (X)HTML.
      *
-     * @global array  The paths of system files and folders.
-     * @global array  The localization of the plugins.
-     * @return string  The (X)HTML.
+     * @global array The paths of system files and folders.
+     * @global array The localization of the plugins.
+     *
+     * @access private
      */
     function _info()
     {
@@ -131,15 +146,16 @@ class Webcamviewer_Controller
     /**
      * Dispatches on plugin related requests.
      *
-     * @access private
-     *
-     * @global bool  Whether the user is logged in as admin.
-     * @global string  The value of the "admin" GET or POST parameter.
-     * @global string  The value of the "action" GET or POST parameter.
-     * @global string  The name of the plugin.
-     * @global string  The (X)HTML to be placed in the contents area.
-     * @global string  Whether the plugin administration is requested.
      * @return void
+     *
+     * @global bool   Whether the user is logged in as admin.
+     * @global string The value of the "admin" GET or POST parameter.
+     * @global string The value of the "action" GET or POST parameter.
+     * @global string The name of the plugin.
+     * @global string The (X)HTML to be placed in the contents area.
+     * @global string Whether the plugin administration is requested.
+     *
+     * @access private
      */
     function _dispatch()
     {
@@ -160,12 +176,16 @@ class Webcamviewer_Controller
     /**
      * Activates the webcamviewer.
      *
-     * @access public
-     *
-     * @global string  (X)HTML to be inserted to the "head" element.
-     * @global string  (X)HTML to be inserted to the "onload" attribute of the "body" element.
-     * @global array  The configuration of the plugins.
      * @return void
+     *
+     * @global string (X)HTML to be inserted to the "head" element.
+     * @global string (X)HTML to be inserted to the "onload" attribute
+     *                of the "body" element.
+     * @global array  The configuration of the plugins.
+     *
+     * @staticvar bool $again Whether the function has been called before.
+     *
+     * @access public
      */
     function init()
     {
