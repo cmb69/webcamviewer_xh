@@ -4,7 +4,7 @@
  * Controller of Webcamviewer_XH.
  *
  * @package    Webcamviewer
- * @copyright  Copyright (c) 2012-2013 Christoph M. Becker <http://3-magi.net/>
+ * @copyright  Copyright (c) 2012-2015 Christoph M. Becker <http://3-magi.net/>
  * @license    http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link       http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
