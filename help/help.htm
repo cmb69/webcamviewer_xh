@@ -1,21 +1,21 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Webcamviewer_XH - Manual</title>
+<title>Webcamviewer_XH &ndash; Manual</title>
 <link rel="stylesheet" type="text/css" href="./stylesheet.css">
 </head>
 
 <body>
 
-<h1>Webcamviewer_XH - a CMSimple_XH Plugin</h1>
-<p style="text-align: justify"><img src="../webcamviewer.png" style="display:
-block; float: left; margin-right: 16px" alt="Plugin Icon"> Webcamviewer_XH
-facilitates displaying an image that will be refreshed after some customizable
-interval. Its intended use is to display the current snapshot of a webcam, which
-places the most recent image in the same place.</p>
+<h1>Webcamviewer_XH &ndash; a CMSimple_XH Plugin</h1>
+<img src="../webcamviewer.png" alt="Webcam download"
+     style="float: left; margin-right: 16px; width: 128px; height: 128px">
+<p style="text-align: justify">Webcamviewer_XH facilitates displaying an image
+that will be refreshed after some customizable interval. Its intended use is to
+display the current snapshot of a webcam, which places the most recent image in
+the same place.</p>
 
 <ul id="nav">
 <li><a href="#notice">Important Notice</a></li>
@@ -33,43 +33,53 @@ places the most recent image in the same place.</p>
 <p><strong>Please do read this documentation, <em>before</em> you encounter any
 problems!</strong></p>
 
-<h2><a name="notice">Important Notice</a></h2>
+<section id="notice">
+<h2>Important Notice</h2>
 <p><strong>Webcamviewer_XH couldn't be tested so far in various environments. It
-is a so called BETA version. Use with caution!</strong></p>
+is a so called release candidate. Use with caution!</strong></p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<h2><a name="requirements">Requirements</a></h2>
+<section id="requirements">
+<h2>Requirements</h2>
 <p>Webcamviewer_XH is a plugin for CMSimple_XH. It requires a UTF-8 encoded
 version. JavaScript has to be enabled in the visitor's browser to let the images
 be automatically refreshed.</p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<h2><a name="installation">Installation</a></h2>
+<section id="installation">
+<h2>Installation</h2>
 <p>The installation is done as with many other CMSimple_XH plugins. See the <a
 href="http://www.cmsimple-xh.org/wiki/doku.php/installation"> CMSimple_XH
 wiki</a> for further details.</p>
 <ol>
-<li><strong>Backup the data on your server.</strong></li>
+<li>Backup the data on your server.</li>
 <li>Unzip the distribution on your computer.</li>
-<li>Upload the whole directory webcamviewer/ to your server to CMSimple_XH's
-plugins directory.</li>
-<li>Set write permissions to the subdirectories config/ and languages/.</li>
-<li><strong>Switch to "Webcamviewer" in the back-end to check if all
-requirements are fulfilled.</strong></li>
+<li>Upload the whole folder webcamviewer/ to your server to CMSimple_XH's
+plugins folder.</li>
+<li>Set write permissions to the subfolders config/ and languages/.</li>
+<li>Go to "Webcamviewer" in the back-end to check if all requirements are
+fulfilled.</li>
 </ol>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<h2><a name="settings">Settings</a></h2>
+<section id="settings">
+<h2>Settings</h2>
 <p>The plugin's configuration is done as with many other CMSimple_XH plugins in
-the website's back-end. Select "Webcamviewer" from "Plugins".</p>
-<p>You can change the default settings of Webcamviewer_XH in "Config". Hints for
-the options will be displayed when hovering over the help icon with your
+the website's back-end. Go to Plugins &rarr; Webcamviewer.</p>
+<p>You can change the default settings of Webcamviewer_XH under "Config". Hints
+for the options will be displayed when hovering over the help icon with your
 mouse.</p>
 <p>Localization is done in "Language". You can translate the character strings
-to your own language, or customize them according to your needs.</p>
+to your own language if there is no appropriate language file available, or
+customize them according to your needs.</p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<h2><a name="usage">Usage</a></h2>
+<section id="usage">
+<h2>Usage</h2>
 <p>To enable Webcamviewer_XH you have to configure "autoload" to 1, or if you
 want to save some resources, insert the following on each page, where you need
 the functionality:</p>
@@ -77,17 +87,23 @@ the functionality:</p>
 <p>This will cause every image with class="webcamviewer" to be refreshed
 periodically after the configured interval.</p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<!--<h2><a name="limitations">Limitations</a></h2>
+<!--<section id="limitations">
+<h2>Limitations</h2>
 <div class="toplink"><a href="#">back to top</a></div>
--->
-<h2><a name="license">License</a></h2>
+</section>-->
+
+<section id="license">
+<h2>License</h2>
 <p>Webcamviewer_XH is licensed under <a
 href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
 <p>&copy; 2012-2015 Christoph M. Becker</p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
-<h2><a name="credits">Credits</a></h2>
+<section id="credits">
+<h2>Credits</h2>
 <p>Webcamviewer was inspired by wolfgang_58.</p>
 <p>The plugin icon is designed by <a href="http://www.mentalrey.it/">Alessandro
 Rei</a>. Many thanks for publishing this icon under GPL.</p>
@@ -101,6 +117,7 @@ Harteg</a>, the father of CMSimple, and all developers of <a
 href="http://www.cmsimple-xh.org/">CMSimple_XH</a> without whom this amazing CMS
 wouldn't exist.</p>
 <div class="toplink"><a href="#">back to top</a></div>
+</section>
 
 </div>
 
