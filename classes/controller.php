@@ -3,7 +3,7 @@
 /**
  * The controllers.
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * @category  CMSimple_XH
  * @package   Webcamviewer
@@ -29,11 +29,9 @@ class Webcamviewer_Controller
      *
      * @return void
      *
-     * @access public
-     *
      * @global array The configuration of the plugins.
      */
-    function Webcamviewer_Controller()
+    public function __construct()
     {
         global $plugin_cf;
 
@@ -53,10 +51,8 @@ class Webcamviewer_Controller
      *
      * @global array The paths of system files and folders.
      * @global array The configuration of the core.
-     *
-     * @access private
      */
-    function _render($_template, $_bag)
+    private function _render($_template, $_bag)
     {
         global $pth, $cf;
 
@@ -82,10 +78,8 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The localization of the core.
      * @global array The localization of the plugins.
-     *
-     * @access private
      */
-    function _systemChecks()
+    private function _systemChecks()
     {
         global $pth, $tx, $plugin_tx;
 
@@ -120,10 +114,8 @@ class Webcamviewer_Controller
      *
      * @global array The paths of system files and folders.
      * @global array The localization of the plugins.
-     *
-     * @access private
      */
-    function _info()
+    private function _info()
     {
         global $pth, $plugin_tx;
 
@@ -154,10 +146,8 @@ class Webcamviewer_Controller
      * @global string The name of the plugin.
      * @global string The (X)HTML to be placed in the contents area.
      * @global string Whether the plugin administration is requested.
-     *
-     * @access private
      */
-    function _dispatch()
+    private function _dispatch()
     {
         global $adm, $admin, $action, $plugin, $o, $webcamviewer;
 
@@ -184,10 +174,8 @@ class Webcamviewer_Controller
      * @global array  The configuration of the plugins.
      *
      * @staticvar bool $again Whether the function has been called before.
-     *
-     * @access public
      */
-    function init()
+    public function init()
     {
         global $hjs, $onload, $plugin_cf;
         static $again = false;
