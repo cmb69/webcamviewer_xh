@@ -29,7 +29,7 @@ require $pth['folder']['plugin_classes'] . 'controller.php';
 /**
  * The plugin version.
  */
-define('WEBCAMVIEWER_VERSION', '1beta2');
+define('WEBCAMVIEWER_VERSION', '@WEBCAMVIEWER_VERSION@');
 
 /**
  * Initializes the webcamviewer.
