@@ -42,32 +42,59 @@ class Webcamviewer_Controller
     }
 
     /**
-     * Renders a template.
+     * Dispatches on plugin related requests.
      *
-     * @param string $_template A template name.
-     * @param array  $_bag      An array of values available in the template.
+     * @return void
      *
-     * @return string
+     * @global bool   Whether the user is logged in as admin.
+     * @global string The value of the "admin" GET or POST parameter.
+     * @global string The value of the "action" GET or POST parameter.
+     * @global string The name of the plugin.
+     * @global string The (X)HTML to be placed in the contents area.
+     * @global string Whether the plugin administration is requested.
+     */
+    protected function dispatch()
+    {
+        global $adm, $admin, $action, $plugin, $o, $webcamviewer;
+
+        if ($adm && isset($webcamviewer) && $webcamviewer == 'true') {
+            $o .= print_plugin_admin('off');
+            switch ($admin) {
+            case '':
+                $o .= $this->info();
+                break;
+            default:
+                $o .= plugin_admin_common($action, $admin, $plugin);
+            }
+        }
+    }
+
+    /**
+     * Returns the plugin information view.
+     *
+     * @return string (X)HTML.
      *
      * @global array The paths of system files and folders.
-     * @global array The configuration of the core.
+     * @global array The localization of the plugins.
      */
-    protected function render($_template, $_bag)
+    protected function info()
     {
-        global $pth, $cf;
+        global $pth, $plugin_tx;
 
-        $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
-            . $_template . '.htm';
-        $_xhtml = $cf['xhtml']['endtags'];
-        unset($pth, $cf);
-        extract($_bag);
-        ob_start();
-        include $_template;
-        $o = ob_get_clean();
-        if (!$_xhtml) {
-            $o = str_replace('/>', '>', $o);
+        $ptx = $plugin_tx['webcamviewer'];
+        $labels = array(
+            'syscheck' => $ptx['syscheck_title'],
+            'about' => $ptx['about']
+        );
+        foreach (array('ok', 'warn', 'fail') as $state) {
+            $images[$state] = $pth['folder']['plugins']
+                . 'webcamviewer/images/' . $state . '.png';
         }
-        return $o;
+        $checks = $this->systemChecks();
+        $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
+        $version = WEBCAMVIEWER_VERSION;
+        $bag = compact('labels', 'images', 'checks', 'icon', 'version');
+        return $this->render('info', $bag);
     }
 
     /**
@@ -108,59 +135,32 @@ class Webcamviewer_Controller
     }
 
     /**
-     * Returns the plugin information view.
+     * Renders a template.
      *
-     * @return string (X)HTML.
+     * @param string $_template A template name.
+     * @param array  $_bag      An array of values available in the template.
+     *
+     * @return string
      *
      * @global array The paths of system files and folders.
-     * @global array The localization of the plugins.
+     * @global array The configuration of the core.
      */
-    protected function info()
+    protected function render($_template, $_bag)
     {
-        global $pth, $plugin_tx;
+        global $pth, $cf;
 
-        $ptx = $plugin_tx['webcamviewer'];
-        $labels = array(
-            'syscheck' => $ptx['syscheck_title'],
-            'about' => $ptx['about']
-        );
-        foreach (array('ok', 'warn', 'fail') as $state) {
-            $images[$state] = $pth['folder']['plugins']
-                . 'webcamviewer/images/' . $state . '.png';
+        $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
+            . $_template . '.htm';
+        $_xhtml = $cf['xhtml']['endtags'];
+        unset($pth, $cf);
+        extract($_bag);
+        ob_start();
+        include $_template;
+        $o = ob_get_clean();
+        if (!$_xhtml) {
+            $o = str_replace('/>', '>', $o);
         }
-        $checks = $this->systemChecks();
-        $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
-        $version = WEBCAMVIEWER_VERSION;
-        $bag = compact('labels', 'images', 'checks', 'icon', 'version');
-        return $this->render('info', $bag);
-    }
-
-    /**
-     * Dispatches on plugin related requests.
-     *
-     * @return void
-     *
-     * @global bool   Whether the user is logged in as admin.
-     * @global string The value of the "admin" GET or POST parameter.
-     * @global string The value of the "action" GET or POST parameter.
-     * @global string The name of the plugin.
-     * @global string The (X)HTML to be placed in the contents area.
-     * @global string Whether the plugin administration is requested.
-     */
-    protected function dispatch()
-    {
-        global $adm, $admin, $action, $plugin, $o, $webcamviewer;
-
-        if ($adm && isset($webcamviewer) && $webcamviewer == 'true') {
-            $o .= print_plugin_admin('off');
-            switch ($admin) {
-            case '':
-                $o .= $this->info();
-                break;
-            default:
-                $o .= plugin_admin_common($action, $admin, $plugin);
-            }
-        }
+        return $o;
     }
 
     /**
