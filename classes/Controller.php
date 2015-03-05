@@ -187,20 +187,19 @@ class Webcamviewer_Controller
     }
 
     /**
-     * Activates the webcamviewer.
+     * Activates the webcam viewers.
      *
      * @return void
      *
      * @global string The paths of system files and folders.
      * @global array  The configuration of the plugins.
-     * @global string (X)HTML to be inserted to the "onload" attribute
-     *                of the "body" element.
+     * @global string (X)HTML to be inserted at the bottom of the body element.
      *
      * @staticvar bool $again Whether the function has been called before.
      */
     public function init()
     {
-        global $pth, $plugin_cf, $hjs;
+        global $pth, $plugin_cf, $bjs;
         static $again = false;
 
         if (!$again) {
@@ -208,7 +207,7 @@ class Webcamviewer_Controller
             $config = array(
                 'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
             );
-            $hjs .= '<script type="text/javascript">/* <![CDATA[ */'
+            $bjs .= '<script type="text/javascript">/* <![CDATA[ */'
                 . 'var WEBCAMVIEWER = ' . json_encode($config) . ';'
                 . '/* ]]> */</script>'
                 . '<script type="text/javascript" src="'
