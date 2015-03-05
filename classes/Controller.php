@@ -154,7 +154,7 @@ class Webcamviewer_Controller
         $checks[$ptx['syscheck_magic_quotes']]
             = !get_magic_quotes_runtime() ? 'ok' : 'fail';
         $folders = array();
-        foreach (array('config/', 'languages/') as $folder) {
+        foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
         }
         foreach ($folders as $folder) {
