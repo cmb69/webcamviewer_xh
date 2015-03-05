@@ -35,22 +35,9 @@ EOT
 define('WEBCAMVIEWER_VERSION', '@WEBCAMVIEWER_VERSION@');
 
 /**
- * Initializes the webcamviewer.
- *
- * @return string (X)HTML.
- *
- * @global Webcamviewer_Controller The controller.
- */
-function webcamviewer()
-{
-    global $_Webcamviewer;
-
-    return $_Webcamviewer->init();
-}
-
-/**
  * Create the webcamviewer controller.
  */
 $_Webcamviewer = new Webcamviewer_Controller();
+$_Webcamviewer->dispatch();
 
 ?>

@@ -25,34 +25,42 @@
 class Webcamviewer_Controller
 {
     /**
-     * Initializes a new instance.
-     *
-     * @return void
-     *
-     * @global array The configuration of the plugins.
-     */
-    public function __construct()
-    {
-        global $plugin_cf;
-
-        if ($plugin_cf['webcamviewer']['autoload']) {
-            $this->init();
-        }
-        $this->dispatch();
-    }
-
-    /**
      * Dispatches on plugin related requests.
      *
      * @return void
      */
-    protected function dispatch()
+    public function dispatch()
     {
+        $this->init();
         if (XH_ADM) {
             if ($this->isAdministrationRequested()) {
                 $this->handleAdministration();
             }
         }
+    }
+
+    /**
+     * Activates the webcam viewers.
+     *
+     * @return void
+     *
+     * @global string The paths of system files and folders.
+     * @global array  The configuration of the plugins.
+     * @global string (X)HTML to be inserted at the bottom of the body element.
+     */
+    protected function init()
+    {
+        global $pth, $plugin_cf, $bjs;
+
+        $config = array(
+            'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
+        );
+        $bjs .= '<script type="text/javascript">/* <![CDATA[ */'
+            . 'var WEBCAMVIEWER = ' . json_encode($config) . ';'
+            . '/* ]]> */</script>'
+            . '<script type="text/javascript" src="'
+            . $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.js">'
+            . '</script>';
     }
 
     /**
@@ -184,36 +192,6 @@ class Webcamviewer_Controller
             $o = str_replace('/>', '>', $o);
         }
         return $o;
-    }
-
-    /**
-     * Activates the webcam viewers.
-     *
-     * @return void
-     *
-     * @global string The paths of system files and folders.
-     * @global array  The configuration of the plugins.
-     * @global string (X)HTML to be inserted at the bottom of the body element.
-     *
-     * @staticvar bool $again Whether the function has been called before.
-     */
-    public function init()
-    {
-        global $pth, $plugin_cf, $bjs;
-        static $again = false;
-
-        if (!$again) {
-            $again = true;
-            $config = array(
-                'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
-            );
-            $bjs .= '<script type="text/javascript">/* <![CDATA[ */'
-                . 'var WEBCAMVIEWER = ' . json_encode($config) . ';'
-                . '/* ]]> */</script>'
-                . '<script type="text/javascript" src="'
-                . $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.js">'
-                . '</script>';
-        }
     }
 }
 
