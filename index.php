@@ -30,11 +30,6 @@ EOT
 }
 
 /**
- * The webcamviewer controller class.
- */
-require $pth['folder']['plugin_classes'] . 'controller.php';
-
-/**
  * The plugin version.
  */
 define('WEBCAMVIEWER_VERSION', '@WEBCAMVIEWER_VERSION@');

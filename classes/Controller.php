@@ -45,14 +45,10 @@ class Webcamviewer_Controller
      * Dispatches on plugin related requests.
      *
      * @return void
-     *
-     * @global bool   Whether the user is logged in as admin.
      */
     protected function dispatch()
     {
-        global $adm;
-
-        if ($adm) {
+        if (XH_ADM) {
             if ($this->isAdministrationRequested()) {
                 $this->handleAdministration();
             }
