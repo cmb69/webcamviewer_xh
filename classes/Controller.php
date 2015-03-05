@@ -114,8 +114,8 @@ class Webcamviewer_Controller
 
         $ptx = $plugin_tx['webcamviewer'];
         $labels = array(
-            'syscheck' => $ptx['syscheck_title'],
-            'about' => $ptx['about']
+            'info' => $ptx['menu_info'],
+            'syscheck' => $ptx['syscheck_title']
         );
         foreach (array('ok', 'warn', 'fail') as $state) {
             $images[$state] = $pth['folder']['plugins']
