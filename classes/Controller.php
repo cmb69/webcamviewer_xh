@@ -123,8 +123,9 @@ class Webcamviewer_Controller
         }
         $checks = self::getSystemChecks();
         $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
+        $alt = $ptx['alt_logo'];
         $version = WEBCAMVIEWER_VERSION;
-        $bag = compact('labels', 'images', 'checks', 'icon', 'version');
+        $bag = compact('labels', 'images', 'checks', 'icon', 'alt', 'version');
         return self::render('info', $bag);
     }
 

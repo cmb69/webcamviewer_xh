@@ -8,6 +8,8 @@ $plugin_tx['webcamviewer']['syscheck_writable']="Folder '%s' writable";
 
 $plugin_tx['webcamviewer']['about']="About Webcamviewer_XH";
 
+$plugin_tx['webcamviewer']['alt_logo']="Webcam download";
+
 $plugin_tx['webcamviewer']['cf_interval']="The duration in seconds between two reloads.";
 
 ?>
