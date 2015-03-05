@@ -47,25 +47,52 @@ class Webcamviewer_Controller
      * @return void
      *
      * @global bool   Whether the user is logged in as admin.
-     * @global string The value of the "admin" GET or POST parameter.
-     * @global string The value of the "action" GET or POST parameter.
-     * @global string The name of the plugin.
-     * @global string The (X)HTML to be placed in the contents area.
-     * @global string Whether the plugin administration is requested.
      */
     protected function dispatch()
     {
-        global $adm, $admin, $action, $plugin, $o, $webcamviewer;
+        global $adm;
 
-        if ($adm && isset($webcamviewer) && $webcamviewer == 'true') {
-            $o .= print_plugin_admin('off');
-            switch ($admin) {
-            case '':
-                $o .= $this->info();
-                break;
-            default:
-                $o .= plugin_admin_common($action, $admin, $plugin);
+        if ($adm) {
+            if ($this->isAdministrationRequested()) {
+                $this->handleAdministration();
             }
+        }
+    }
+
+    /**
+     * Returns whether the plugin administration is requested.
+     *
+     * @return bool
+     *
+     * @global string Whether the plugin administration is requested.
+     */
+    protected function isAdministrationRequested()
+    {
+        global $webcamviewer;
+
+        return isset($webcamviewer) && $webcamviewer == 'true';
+    }
+
+    /**
+     * Handles plugin administration requests.
+     *
+     * @return void
+     *
+     * @global string The value of the <var>admin</var> GP parameter.
+     * @global string The value of the <var>action</var> GP parameter.
+     * @global string The (X)HTML to be placed in the contents area.
+     */
+    protected function handleAdministration()
+    {
+        global $admin, $action, $o;
+
+        $o .= print_plugin_admin('off');
+        switch ($admin) {
+        case '':
+            $o .= $this->renderInfo();
+            break;
+        default:
+            $o .= plugin_admin_common($action, $admin, 'webcamviewer');
         }
     }
 
@@ -77,7 +104,7 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The localization of the plugins.
      */
-    protected function info()
+    protected function renderInfo()
     {
         global $pth, $plugin_tx;
 
@@ -90,7 +117,7 @@ class Webcamviewer_Controller
             $images[$state] = $pth['folder']['plugins']
                 . 'webcamviewer/images/' . $state . '.png';
         }
-        $checks = $this->systemChecks();
+        $checks = $this->getSystemChecks();
         $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
         $version = WEBCAMVIEWER_VERSION;
         $bag = compact('labels', 'images', 'checks', 'icon', 'version');
@@ -106,7 +133,7 @@ class Webcamviewer_Controller
      * @global array The localization of the core.
      * @global array The localization of the plugins.
      */
-    protected function systemChecks()
+    protected function getSystemChecks()
     {
         global $pth, $tx, $plugin_tx;
 
