@@ -3,7 +3,6 @@
 $plugin_tx['webcamviewer']['syscheck_title']="System-Prüfung";
 $plugin_tx['webcamviewer']['syscheck_phpversion']="PHP-Version &ge; %s";
 $plugin_tx['webcamviewer']['syscheck_extension']="Erweiterung '%s' geladen";
-$plugin_tx['webcamviewer']['syscheck_encoding']="'UTF-8' Kodierung eingestellt";
 $plugin_tx['webcamviewer']['syscheck_magic_quotes']="Magic quotes runtime off";
 $plugin_tx['webcamviewer']['syscheck_writable']="Ordner '%s' schreibbar";
 
