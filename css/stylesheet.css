@@ -1,0 +1,13 @@
+/*
+ * Backend
+ */
+
+.webcamviewer_logo {
+    float: left;
+    width: 128px;
+    height: 128px;
+    margin-right: 16px;
+}
+.webcamviewer_license {
+    text-align: justify;
+}
