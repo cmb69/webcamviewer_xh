@@ -191,24 +191,29 @@ class Webcamviewer_Controller
      *
      * @return void
      *
-     * @global string (X)HTML to be inserted to the "head" element.
+     * @global string The paths of system files and folders.
+     * @global array  The configuration of the plugins.
      * @global string (X)HTML to be inserted to the "onload" attribute
      *                of the "body" element.
-     * @global array  The configuration of the plugins.
      *
      * @staticvar bool $again Whether the function has been called before.
      */
     public function init()
     {
-        global $hjs, $onload, $plugin_cf;
+        global $pth, $plugin_cf, $hjs;
         static $again = false;
 
         if (!$again) {
             $again = true;
-            $interval = 1000 * $plugin_cf['webcamviewer']['interval'];
-            $bag = compact('interval');
-            $hjs .= $this->render('script', $bag);
-            $onload .= "webcamviewer.init();";
+            $config = array(
+                'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
+            );
+            $hjs .= '<script type="text/javascript">/* <![CDATA[ */'
+                . 'var WEBCAMVIEWER = ' . json_encode($config) . ';'
+                . '/* ]]> */</script>'
+                . '<script type="text/javascript" src="'
+                . $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.js">'
+                . '</script>';
         }
     }
 }
