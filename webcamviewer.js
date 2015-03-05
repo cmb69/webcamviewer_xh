@@ -42,7 +42,7 @@
             image = images[i];
             url = urls[i];
             separator = url.indexOf("?") < 0 ? "?" : "&";
-            appendix = "qwerty=" + new Date().valueOf();
+            appendix = "webcamviewer=" + new Date().valueOf();
             image.src =  url + separator + appendix;
         }
     }
