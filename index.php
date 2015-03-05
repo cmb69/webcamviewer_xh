@@ -34,10 +34,6 @@ EOT
  */
 define('WEBCAMVIEWER_VERSION', '@WEBCAMVIEWER_VERSION@');
 
-/**
- * Create the webcamviewer controller.
- */
-$_Webcamviewer = new Webcamviewer_Controller();
-$_Webcamviewer->dispatch();
+Webcamviewer_Controller::dispatch();
 
 ?>

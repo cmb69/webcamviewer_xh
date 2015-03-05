@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The controllers.
+ * The controller.
  *
  * PHP version 5
  *
@@ -14,7 +14,7 @@
  */
 
 /**
- * The controllers.
+ * The controller.
  *
  * @category CMSimple_XH
  * @package  Webcamviewer
@@ -29,12 +29,12 @@ class Webcamviewer_Controller
      *
      * @return void
      */
-    public function dispatch()
+    public static function dispatch()
     {
-        $this->init();
+        self::init();
         if (XH_ADM) {
-            if ($this->isAdministrationRequested()) {
-                $this->handleAdministration();
+            if (self::isAdministrationRequested()) {
+                self::handleAdministration();
             }
         }
     }
@@ -48,7 +48,7 @@ class Webcamviewer_Controller
      * @global array  The configuration of the plugins.
      * @global string (X)HTML to be inserted at the bottom of the body element.
      */
-    protected function init()
+    protected static function init()
     {
         global $pth, $plugin_cf, $bjs;
 
@@ -70,7 +70,7 @@ class Webcamviewer_Controller
      *
      * @global string Whether the plugin administration is requested.
      */
-    protected function isAdministrationRequested()
+    protected static function isAdministrationRequested()
     {
         global $webcamviewer;
 
@@ -86,14 +86,14 @@ class Webcamviewer_Controller
      * @global string The value of the <var>action</var> GP parameter.
      * @global string The (X)HTML to be placed in the contents area.
      */
-    protected function handleAdministration()
+    protected static function handleAdministration()
     {
         global $admin, $action, $o;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
         case '':
-            $o .= $this->renderInfo();
+            $o .= self::renderInfo();
             break;
         default:
             $o .= plugin_admin_common($action, $admin, 'webcamviewer');
@@ -108,7 +108,7 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The localization of the plugins.
      */
-    protected function renderInfo()
+    protected static function renderInfo()
     {
         global $pth, $plugin_tx;
 
@@ -121,11 +121,11 @@ class Webcamviewer_Controller
             $images[$state] = $pth['folder']['plugins']
                 . 'webcamviewer/images/' . $state . '.png';
         }
-        $checks = $this->getSystemChecks();
+        $checks = self::getSystemChecks();
         $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
         $version = WEBCAMVIEWER_VERSION;
         $bag = compact('labels', 'images', 'checks', 'icon', 'version');
-        return $this->render('info', $bag);
+        return self::render('info', $bag);
     }
 
     /**
@@ -137,7 +137,7 @@ class Webcamviewer_Controller
      * @global array The localization of the core.
      * @global array The localization of the plugins.
      */
-    protected function getSystemChecks()
+    protected static function getSystemChecks()
     {
         global $pth, $tx, $plugin_tx;
 
@@ -176,7 +176,7 @@ class Webcamviewer_Controller
      * @global array The paths of system files and folders.
      * @global array The configuration of the core.
      */
-    protected function render($_template, $_bag)
+    protected static function render($_template, $_bag)
     {
         global $pth, $cf;
 
