@@ -33,6 +33,9 @@ class Webcamviewer_Controller
     {
         self::init();
         if (XH_ADM) {
+            if (function_exists('XH_registerStandardPluginMenuItems')) {
+                XH_registerStandardPluginMenuItems(false);
+            }
             if (self::isAdministrationRequested()) {
                 self::handleAdministration();
             }
@@ -74,7 +77,9 @@ class Webcamviewer_Controller
     {
         global $webcamviewer;
 
-        return isset($webcamviewer) && $webcamviewer == 'true';
+        return function_exists('XH_wantsPluginAdministration')
+            && XH_wantsPluginAdministration('webcamviewer')
+            || isset($webcamviewer) && $webcamviewer == 'true';
     }
 
     /**
