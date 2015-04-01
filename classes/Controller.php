@@ -140,12 +140,11 @@ class Webcamviewer_Controller
      * @return array
      *
      * @global array The paths of system files and folders.
-     * @global array The localization of the core.
      * @global array The localization of the plugins.
      */
     protected static function getSystemChecks()
     {
-        global $pth, $tx, $plugin_tx;
+        global $pth, $plugin_tx;
 
         $ptx = $plugin_tx['webcamviewer'];
         $phpVersion = '5.2.0';
