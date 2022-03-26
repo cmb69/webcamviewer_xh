@@ -2,10 +2,6 @@
 
 <project name="Webcamviewer" default="help">
 
-    <fileset id="js-sources" dir=".">
-        <include name="*.js"/>
-    </fileset>
-
     <target name="help" description="lists available targets">
         <exec executable="phing" outputProperty="help">
             <arg value="-l"/>
