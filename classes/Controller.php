@@ -148,6 +148,7 @@ class Webcamviewer_Controller
 
         $ptx = $plugin_tx['webcamviewer'];
         $phpVersion = '5.2.0';
+        $xhVersion = "1.6";
         $checks = array();
         $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
             = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'ok' : 'fail';
@@ -155,6 +156,8 @@ class Webcamviewer_Controller
             $checks[sprintf($ptx['syscheck_extension'], $ext)]
                 = extension_loaded($ext) ? 'ok' : 'fail';
         }
+        $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
+            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") ? "ok" : "fail";
         $checks[$ptx['syscheck_magic_quotes']]
             = !get_magic_quotes_runtime() ? 'ok' : 'fail';
         $folders = array();
