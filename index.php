@@ -13,9 +13,11 @@
  * @link      http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
 
+use Webcamviewer\Controller;
+
 /**
  * The plugin version.
  */
 define('WEBCAMVIEWER_VERSION', '1.1-dev');
 
-Webcamviewer_Controller::dispatch();
+Controller::dispatch();

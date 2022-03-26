@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
 
+namespace Webcamviewer;
+
 /**
  * The controller.
  *
@@ -22,7 +24,7 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
  */
-class Webcamviewer_Controller
+class Controller
 {
     /**
      * Dispatches on plugin related requests.
@@ -147,7 +149,7 @@ class Webcamviewer_Controller
         global $pth, $plugin_tx;
 
         $ptx = $plugin_tx['webcamviewer'];
-        $phpVersion = '5.2.0';
+        $phpVersion = "7.0.0";
         $xhVersion = "1.7.0";
         $checks = array();
         $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
@@ -158,8 +160,6 @@ class Webcamviewer_Controller
         }
         $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
             = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") ? "ok" : "fail";
-        $checks[$ptx['syscheck_magic_quotes']]
-            = !get_magic_quotes_runtime() ? 'ok' : 'fail';
         $folders = array();
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
