@@ -24,9 +24,8 @@ namespace Webcamviewer;
 class Plugin
 {
     const VERSION = "1.1-dev";
+
     /**
-     * Dispatches on plugin related requests.
-     *
      * @return void
      */
     public static function dispatch()
@@ -41,13 +40,7 @@ class Plugin
     }
 
     /**
-     * Activates the webcam viewers.
-     *
      * @return void
-     *
-     * @global string The paths of system files and folders.
-     * @global array  The configuration of the plugins.
-     * @global string (X)HTML to be inserted at the bottom of the body element.
      */
     protected static function init()
     {
@@ -65,11 +58,7 @@ class Plugin
     }
 
     /**
-     * Returns whether the plugin administration is requested.
-     *
      * @return bool
-     *
-     * @global string Whether the plugin administration is requested.
      */
     protected static function isAdministrationRequested()
     {
@@ -77,13 +66,7 @@ class Plugin
     }
 
     /**
-     * Handles plugin administration requests.
-     *
      * @return void
-     *
-     * @global string The value of the <var>admin</var> GP parameter.
-     * @global string The value of the <var>action</var> GP parameter.
-     * @global string The (X)HTML to be placed in the contents area.
      */
     protected static function handleAdministration()
     {
@@ -100,12 +83,7 @@ class Plugin
     }
 
     /**
-     * Returns the plugin information view.
-     *
-     * @return string (X)HTML.
-     *
-     * @global array The paths of system files and folders.
-     * @global array The localization of the plugins.
+     * @return string
      */
     protected static function renderInfo()
     {
@@ -129,12 +107,7 @@ class Plugin
     }
 
     /**
-     * Returns the system checks.
-     *
      * @return array
-     *
-     * @global array The paths of system files and folders.
-     * @global array The localization of the plugins.
      */
     protected static function getSystemChecks()
     {
@@ -165,15 +138,9 @@ class Plugin
     }
 
     /**
-     * Renders a template.
-     *
-     * @param string $_template A template name.
-     * @param array  $_bag      An array of values available in the template.
-     *
+     * @param string $_template
+     * @param array  $_bag
      * @return string
-     *
-     * @global array The paths of system files and folders.
-     * @global array The configuration of the core.
      */
     protected static function render($_template, $_bag)
     {
