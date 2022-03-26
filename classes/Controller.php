@@ -40,7 +40,7 @@ class Controller
     public static function dispatch()
     {
         self::init();
-        if (XH_ADM) {
+        if (defined("XH_ADM") && XH_ADM) {
             XH_registerStandardPluginMenuItems(false);
             if (self::isAdministrationRequested()) {
                 self::handleAdministration();
