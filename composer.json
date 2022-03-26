@@ -1,5 +1,0 @@
-{
-    "require-dev": {
-        "bartlett/php-compatinfo": "3.7.*"
-    }
-}

@@ -2,6 +2,4 @@
 .komodotools
 doc
 tests/coverage
-vendor
-/composer.lock
 /tools
