@@ -41,9 +41,7 @@ class Controller
     {
         self::init();
         if (XH_ADM) {
-            if (function_exists('XH_registerStandardPluginMenuItems')) {
-                XH_registerStandardPluginMenuItems(false);
-            }
+            XH_registerStandardPluginMenuItems(false);
             if (self::isAdministrationRequested()) {
                 self::handleAdministration();
             }
@@ -83,11 +81,7 @@ class Controller
      */
     protected static function isAdministrationRequested()
     {
-        global $webcamviewer;
-
-        return function_exists('XH_wantsPluginAdministration')
-            && XH_wantsPluginAdministration('webcamviewer')
-            || isset($webcamviewer) && $webcamviewer == 'true';
+        return XH_wantsPluginAdministration('webcamviewer');
     }
 
     /**
