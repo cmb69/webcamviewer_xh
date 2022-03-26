@@ -17,9 +17,12 @@
     </target>
 
     <target name="sniff" description="checks adherence to PEAR CS">
-        <phpcodesniffer standard="PEAR" format="full">
-            <fileset refid="php-sources"/>
-        </phpcodesniffer>
+        <exec executable="phpcs" passthru="true" checkreturn="true">
+            <arg value="--standard=PEAR"/>
+            <arg line="--runtime-set ignore_warnings_on_exit true"/>
+            <arg file="index.php"/>
+            <arg file="classes"/>
+        </exec>
     </target>
 
     <target name="mess" description="detects code flaws">
