@@ -136,7 +136,7 @@ class Plugin
         global $pth, $cf;
 
         $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
-            . $_template . '.htm';
+            . $_template . '.php';
         unset($pth, $cf);
         extract($_bag);
         ob_start();
