@@ -185,15 +185,11 @@ class Webcamviewer_Controller
 
         $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
             . $_template . '.htm';
-        $_xhtml = $cf['xhtml']['endtags'];
         unset($pth, $cf);
         extract($_bag);
         ob_start();
         include $_template;
         $o = ob_get_clean();
-        if (!$_xhtml) {
-            $o = str_replace('/>', '>', $o);
-        }
         return $o;
     }
 }
