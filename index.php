@@ -21,9 +21,4 @@
 
 use Webcamviewer\Plugin;
 
-/**
- * The plugin version.
- */
-define('WEBCAMVIEWER_VERSION', '1.1-dev');
-
 Plugin::dispatch();

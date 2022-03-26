@@ -23,6 +23,7 @@ namespace Webcamviewer;
 
 class Plugin
 {
+    const VERSION = "1.1-dev";
     /**
      * Dispatches on plugin related requests.
      *
@@ -122,7 +123,7 @@ class Plugin
         $checks = self::getSystemChecks();
         $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
         $alt = $ptx['alt_logo'];
-        $version = WEBCAMVIEWER_VERSION;
+        $version = self::VERSION;
         $bag = compact('labels', 'images', 'checks', 'icon', 'alt', 'version');
         return self::render('info', $bag);
     }
