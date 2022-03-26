@@ -100,6 +100,9 @@ class Plugin
         return self::render('info', $bag);
     }
 
+    /**
+     * @return array<string,string>
+     */
     protected static function getSystemChecks(): array
     {
         global $pth, $plugin_tx;
@@ -128,6 +131,9 @@ class Plugin
         return $checks;
     }
 
+    /**
+     * @param array<string,mixed> $_bag
+     */
     protected static function render(string $_template, array $_bag): string
     {
         global $pth, $cf;
@@ -138,7 +144,7 @@ class Plugin
         extract($_bag);
         ob_start();
         include $_template;
-        $o = ob_get_clean();
+        $o = (string) ob_get_clean();
         return $o;
     }
 }
