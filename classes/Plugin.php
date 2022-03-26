@@ -57,10 +57,7 @@ class Plugin
             . '</script>';
     }
 
-    /**
-     * @return bool
-     */
-    protected static function isAdministrationRequested()
+    protected static function isAdministrationRequested(): bool
     {
         return XH_wantsPluginAdministration('webcamviewer');
     }
@@ -82,10 +79,7 @@ class Plugin
         }
     }
 
-    /**
-     * @return string
-     */
-    protected static function renderInfo()
+    protected static function renderInfo(): string
     {
         global $pth, $plugin_tx;
 
@@ -106,10 +100,7 @@ class Plugin
         return self::render('info', $bag);
     }
 
-    /**
-     * @return array
-     */
-    protected static function getSystemChecks()
+    protected static function getSystemChecks(): array
     {
         global $pth, $plugin_tx;
 
@@ -137,12 +128,7 @@ class Plugin
         return $checks;
     }
 
-    /**
-     * @param string $_template
-     * @param array  $_bag
-     * @return string
-     */
-    protected static function render($_template, $_bag)
+    protected static function render(string $_template, array $_bag): string
     {
         global $pth, $cf;
 
