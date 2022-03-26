@@ -19,11 +19,11 @@
  * along with Webcamviewer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Webcamviewer\Controller;
+use Webcamviewer\Plugin;
 
 /**
  * The plugin version.
  */
 define('WEBCAMVIEWER_VERSION', '1.1-dev');
 
-Controller::dispatch();
+Plugin::dispatch();

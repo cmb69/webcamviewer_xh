@@ -21,16 +21,7 @@
 
 namespace Webcamviewer;
 
-/**
- * The controller.
- *
- * @category CMSimple_XH
- * @package  Webcamviewer
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Webcamviewer_XH
- */
-class Controller
+class Plugin
 {
     /**
      * Dispatches on plugin related requests.
