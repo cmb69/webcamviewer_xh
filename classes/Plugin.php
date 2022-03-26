@@ -85,7 +85,6 @@ class Plugin
 
         $ptx = $plugin_tx['webcamviewer'];
         $labels = array(
-            'info' => $ptx['menu_info'],
             'syscheck' => $ptx['syscheck_title']
         );
         foreach (array('ok', 'warn', 'fail') as $state) {
@@ -93,10 +92,8 @@ class Plugin
                 . 'webcamviewer/images/' . $state . '.png';
         }
         $checks = self::getSystemChecks();
-        $icon = $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.png';
-        $alt = $ptx['alt_logo'];
         $version = self::VERSION;
-        $bag = compact('labels', 'images', 'checks', 'icon', 'alt', 'version');
+        $bag = compact('labels', 'images', 'checks', 'version');
         return self::render('info', $bag);
     }
 
@@ -121,7 +118,7 @@ class Plugin
             // @phpstan-ignore-next-line
             = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "ok" : "fail";
         $folders = array();
-        foreach (array('config/', 'css/', 'languages/') as $folder) {
+        foreach (array('config/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
         }
         foreach ($folders as $folder) {
