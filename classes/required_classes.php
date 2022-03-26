@@ -34,5 +34,3 @@ function Webcamviewer_autoload($class)
 }
 
 spl_autoload_register('Webcamviewer_autoload');
-
-?>

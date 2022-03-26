@@ -16,7 +16,8 @@
 /*
  * Prevent direct access and usage from unsupported CMSimple_XH versions.
  */
-if (!defined('CMSIMPLE_XH_VERSION')
+if (
+    !defined('CMSIMPLE_XH_VERSION')
     || strpos(CMSIMPLE_XH_VERSION, 'CMSimple_XH') !== 0
     || version_compare(CMSIMPLE_XH_VERSION, 'CMSimple_XH 1.6', 'lt')
 ) {
@@ -35,5 +36,3 @@ EOT
 define('WEBCAMVIEWER_VERSION', '1.0');
 
 Webcamviewer_Controller::dispatch();
-
-?>

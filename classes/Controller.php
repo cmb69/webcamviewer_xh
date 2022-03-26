@@ -97,11 +97,11 @@ class Webcamviewer_Controller
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
-        case '':
-            $o .= self::renderInfo();
-            break;
-        default:
-            $o .= plugin_admin_common($action, $admin, 'webcamviewer');
+            case '':
+                $o .= self::renderInfo();
+                break;
+            default:
+                $o .= plugin_admin_common($action, $admin, 'webcamviewer');
         }
     }
 
@@ -197,5 +197,3 @@ class Webcamviewer_Controller
         return $o;
     }
 }
-
-?>
