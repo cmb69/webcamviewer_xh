@@ -148,7 +148,7 @@ class Webcamviewer_Controller
 
         $ptx = $plugin_tx['webcamviewer'];
         $phpVersion = '5.2.0';
-        $xhVersion = "1.6";
+        $xhVersion = "1.7.0";
         $checks = array();
         $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
             = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'ok' : 'fail';
