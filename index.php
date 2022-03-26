@@ -33,6 +33,6 @@ EOT
 /**
  * The plugin version.
  */
-define('WEBCAMVIEWER_VERSION', '1.0');
+define('WEBCAMVIEWER_VERSION', '1.1-dev');
 
 Webcamviewer_Controller::dispatch();
