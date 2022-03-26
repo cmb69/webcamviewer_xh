@@ -87,7 +87,7 @@ class Plugin
      */
     protected static function handleAdministration()
     {
-        global $admin, $action, $o;
+        global $admin, $o;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
@@ -95,7 +95,7 @@ class Plugin
                 $o .= self::renderInfo();
                 break;
             default:
-                $o .= plugin_admin_common($action, $admin, 'webcamviewer');
+                $o .= plugin_admin_common();
         }
     }
 
@@ -151,7 +151,8 @@ class Plugin
                 = extension_loaded($ext) ? 'ok' : 'fail';
         }
         $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
-            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") ? "ok" : "fail";
+            // @phpstan-ignore-next-line
+            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "ok" : "fail";
         $folders = array();
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;

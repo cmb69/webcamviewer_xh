@@ -1,0 +1,10 @@
+parameters:
+  level: 5
+  paths:
+    - classes/
+    - views/
+    - index.php
+  bootstrapFiles:
+    - phpstan.php
+  scanFiles:
+    - ../../cmsimple/adminfuncs.php
