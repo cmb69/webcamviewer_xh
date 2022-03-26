@@ -49,9 +49,10 @@
         </exec>
         <move todir="dist">
             <fileset dir="export">
+                <exclude name=".phive/**"/>
                 <exclude name="build.xml"/>
-                <exclude name="coverage.xml"/>
-                <exclude name="TODO"/>
+                <exclude name="phpstan.*"/>
+                <exclude name="teplad.xml"/>
             </fileset>
         </move>
         <delete dir="export"/>
