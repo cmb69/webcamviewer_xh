@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpcs" version="3.6.*" installed="3.6.2" location="./tools/phpcs" copy="false"/>
+  <phar name="phpmd" version="2.9.*" installed="2.9.1" location="./tools/phpmd" copy="false"/>
+</phive>
