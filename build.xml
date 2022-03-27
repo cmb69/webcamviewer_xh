@@ -41,12 +41,12 @@
         <unzip file="export.zip" todir="export"/>
         <delete file="export.zip"/>
         <exec executable="uglifyjs" checkreturn="true">
-            <arg file="export/webcamviewer.js"/>
+            <arg file="export/webcamviewer.min.js"/>
             <arg value="--compress"/>
             <arg value="--mangle"/>
             <arg value="--toplevel"/>
             <arg value="--output"/>
-            <arg file="export/webcamviewer.js"/>
+            <arg file="export/webcamviewer.min.js"/>
         </exec>
         <move todir="dist">
             <fileset dir="export">

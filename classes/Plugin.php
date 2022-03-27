@@ -50,7 +50,7 @@ class Plugin
             'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
         );
         $json = json_encode($config, JSON_HEX_APOS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $jsfile = "{$pth['folder']['plugins']}webcamviewer/webcamviewer.js";
+        $jsfile = "{$pth['folder']['plugins']}webcamviewer/webcamviewer.min.js";
         $hjs .= "<meta name=\"webcamviewer_config\" content='$json'>"
             . "<script type=\"module\" src=\"$jsfile\"></script>";
     }
