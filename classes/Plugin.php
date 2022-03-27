@@ -85,13 +85,9 @@ class Plugin
         $labels = array(
             'syscheck' => $ptx['syscheck_title']
         );
-        foreach (array('ok', 'warn', 'fail') as $state) {
-            $images[$state] = $pth['folder']['plugins']
-                . 'webcamviewer/images/' . $state . '.png';
-        }
         $checks = self::getSystemChecks();
         $version = self::VERSION;
-        $bag = compact('labels', 'images', 'checks', 'version');
+        $bag = compact('labels', 'checks', 'version');
         return self::render('info', $bag);
     }
 
@@ -107,21 +103,21 @@ class Plugin
         $xhVersion = "1.7.0";
         $checks = array();
         $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
-            = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'ok' : 'fail';
+            = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'xh_success' : 'xh_fail';
         foreach (array('json') as $ext) {
             $checks[sprintf($ptx['syscheck_extension'], $ext)]
-                = extension_loaded($ext) ? 'ok' : 'fail';
+                = extension_loaded($ext) ? 'xh_success' : 'xh_fail';
         }
         $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
             // @phpstan-ignore-next-line
-            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "ok" : "fail";
+            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "xh_success" : "xh_fail";
         $folders = array();
         foreach (array('config/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
         }
         foreach ($folders as $folder) {
             $checks[sprintf($ptx['syscheck_writable'], $folder)]
-                = is_writable($folder) ? 'ok' : 'warn';
+                = is_writable($folder) ? 'xh_success' : 'xh_warning';
         }
         return $checks;
     }
