@@ -18,7 +18,6 @@
  */
 
 /*jslint browser: true, maxlen: 80 */
-/*global WEBCAMVIEWER */
 
 (function () {
     "use strict";
@@ -65,7 +64,7 @@
      * @returns {undefined}
      */
     function init() {
-        var i, len, image;
+        var i, len, image, config;
 
         for (i = 0, len = document.images.length; i < len; i += 1) {
             image = document.images[i];
@@ -74,7 +73,8 @@
                 urls.push(image.src);
             }
         }
-        setInterval(refresh, WEBCAMVIEWER.interval);
+        config = JSON.parse(document.getElementsByName("webcamviewer_config")[0].content);
+        setInterval(refresh, config.interval);
     }
 
     on(window, "load", function () {
