@@ -17,65 +17,37 @@
  * along with Webcamviewer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*jslint browser: true, maxlen: 80 */
+// @ts-check
 
-var images, urls;
-
-/**
- * Registers an event listener.
- *
- * @param {EventTarget} element
- * @param {String}      type
- * @param {Function}    listener
- *
- * @returns {undefined}
- */
-function on(element, type, listener) {
-    if (typeof element.addEventListener !== "undefined") {
-        element.addEventListener(type, listener, false);
-    } else if (typeof element.attachEvent !== "undefined") {
-        element.attachEvent("on" + type, listener);
-    }
-}
+let images = [];
+let urls = [];
 
 /**
- * Refreshes all webcam images.
- *
- * @returns {undefined}
+ * @returns {void}
  */
 function refresh() {
-    var i, len, image, url, separator, appendix;
-
-    for (i = 0, len = images.length; i < len; i += 1) {
-        image = images[i];
-        url = urls[i];
-        separator = url.indexOf("?") < 0 ? "?" : "&";
-        appendix = "webcamviewer=" + new Date().valueOf();
+    for (let i = 0, len = images.length; i < len; i += 1) {
+        let image = images[i];
+        let url = urls[i];
+        let separator = url.indexOf("?") < 0 ? "?" : "&";
+        let appendix = "webcamviewer=" + new Date().valueOf();
         image.src =  url + separator + appendix;
     }
 }
 
 /**
- * Initializes the webcam viewers.
- *
- * @returns {undefined}
+ * @returns {void}
  */
 function init() {
-    var i, len, image, config;
-
-    for (i = 0, len = document.images.length; i < len; i += 1) {
-        image = document.images[i];
-        if (/(^|\s)webcamviewer($|\s)/.test(image.className)) {
+    for (let image of document.images) {
+        if (image.classList.contains("webcamviewer")) {
             images.push(image);
             urls.push(image.src);
         }
     }
-    config = JSON.parse(document.getElementsByName("webcamviewer_config")[0].content);
+    let el = /** @type {HTMLMetaElement} */ (document.getElementsByName("webcamviewer_config")[0]);
+    let config = JSON.parse(el.content);
     setInterval(refresh, config.interval);
 }
 
-on(window, "load", function () {
-    images = [];
-    urls = [];
-    init();
-});
+window.addEventListener("load", init, false);
