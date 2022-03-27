@@ -44,6 +44,7 @@
             <arg file="export/webcamviewer.js"/>
             <arg value="--compress"/>
             <arg value="--mangle"/>
+            <arg value="--toplevel"/>
             <arg value="--output"/>
             <arg file="export/webcamviewer.js"/>
         </exec>
