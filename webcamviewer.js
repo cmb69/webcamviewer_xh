@@ -19,67 +19,63 @@
 
 /*jslint browser: true, maxlen: 80 */
 
-(function () {
-    "use strict";
+var images, urls;
 
-    var images, urls;
+/**
+ * Registers an event listener.
+ *
+ * @param {EventTarget} element
+ * @param {String}      type
+ * @param {Function}    listener
+ *
+ * @returns {undefined}
+ */
+function on(element, type, listener) {
+    if (typeof element.addEventListener !== "undefined") {
+        element.addEventListener(type, listener, false);
+    } else if (typeof element.attachEvent !== "undefined") {
+        element.attachEvent("on" + type, listener);
+    }
+}
 
-    /**
-     * Registers an event listener.
-     *
-     * @param {EventTarget} element
-     * @param {String}      type
-     * @param {Function}    listener
-     *
-     * @returns {undefined}
-     */
-    function on(element, type, listener) {
-        if (typeof element.addEventListener !== "undefined") {
-            element.addEventListener(type, listener, false);
-        } else if (typeof element.attachEvent !== "undefined") {
-            element.attachEvent("on" + type, listener);
+/**
+ * Refreshes all webcam images.
+ *
+ * @returns {undefined}
+ */
+function refresh() {
+    var i, len, image, url, separator, appendix;
+
+    for (i = 0, len = images.length; i < len; i += 1) {
+        image = images[i];
+        url = urls[i];
+        separator = url.indexOf("?") < 0 ? "?" : "&";
+        appendix = "webcamviewer=" + new Date().valueOf();
+        image.src =  url + separator + appendix;
+    }
+}
+
+/**
+ * Initializes the webcam viewers.
+ *
+ * @returns {undefined}
+ */
+function init() {
+    var i, len, image, config;
+
+    for (i = 0, len = document.images.length; i < len; i += 1) {
+        image = document.images[i];
+        if (/(^|\s)webcamviewer($|\s)/.test(image.className)) {
+            images.push(image);
+            urls.push(image.src);
         }
     }
+    config = JSON.parse(document.getElementsByName("webcamviewer_config")[0].content);
+    setInterval(refresh, config.interval);
+}
 
-    /**
-     * Refreshes all webcam images.
-     *
-     * @returns {undefined}
-     */
-    function refresh() {
-        var i, len, image, url, separator, appendix;
-
-        for (i = 0, len = images.length; i < len; i += 1) {
-            image = images[i];
-            url = urls[i];
-            separator = url.indexOf("?") < 0 ? "?" : "&";
-            appendix = "webcamviewer=" + new Date().valueOf();
-            image.src =  url + separator + appendix;
-        }
-    }
-
-    /**
-     * Initializes the webcam viewers.
-     *
-     * @returns {undefined}
-     */
-    function init() {
-        var i, len, image, config;
-
-        for (i = 0, len = document.images.length; i < len; i += 1) {
-            image = document.images[i];
-            if (/(^|\s)webcamviewer($|\s)/.test(image.className)) {
-                images.push(image);
-                urls.push(image.src);
-            }
-        }
-        config = JSON.parse(document.getElementsByName("webcamviewer_config")[0].content);
-        setInterval(refresh, config.interval);
-    }
-
-    on(window, "load", function () {
-        images = [];
-        urls = [];
-        init();
-    });
-}());
+on(window, "load", function () {
+    images = [];
+    urls = [];
+    init();
+});

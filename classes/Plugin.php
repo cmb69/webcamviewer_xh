@@ -44,16 +44,15 @@ class Plugin
      */
     protected static function init()
     {
-        global $pth, $plugin_cf, $hjs, $bjs;
+        global $pth, $plugin_cf, $hjs;
 
         $config = array(
             'interval' => 1000 * $plugin_cf['webcamviewer']['interval']
         );
-        $config = json_encode($config, JSON_HEX_APOS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $hjs .= "<meta name=\"webcamviewer_config\" content='$config'>";
-        $bjs .= '<script type="text/javascript" src="'
-            . $pth['folder']['plugins'] . 'webcamviewer/webcamviewer.js">'
-            . '</script>';
+        $json = json_encode($config, JSON_HEX_APOS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+        $jsfile = "{$pth['folder']['plugins']}webcamviewer/webcamviewer.js";
+        $hjs .= "<meta name=\"webcamviewer_config\" content='$json'>"
+            . "<script type=\"module\" src=\"$jsfile\"></script>";
     }
 
     protected static function isAdministrationRequested(): bool
