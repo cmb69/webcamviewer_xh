@@ -25,9 +25,9 @@ final class ShowInfo
 {
     public function __invoke(): string
     {
-        global $plugin_tx;
+        global $pth, $plugin_tx;
 
-        $view = new View();
+        $view = new View($pth['folder']['plugins'] . 'webcamviewer/views/');
         $ptx = $plugin_tx['webcamviewer'];
         $labels = array(
             'syscheck' => $ptx['syscheck_title']

@@ -23,19 +23,22 @@ namespace Webcamviewer;
 
 final class View
 {
+    /** @var string */
+    private $viewFolder;
+
+    public function __construct(string $viewFolder)
+    {
+        $this->viewFolder = $viewFolder;
+    }
+
     /**
      * @param array<string,mixed> $_bag
      */
     public function render(string $_template, array $_bag): string
     {
-        global $pth;
-
-        $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
-            . $_template . '.php';
-        unset($pth);
         extract($_bag);
         ob_start();
-        include $_template;
+        include "{$this->viewFolder}{$_template}.php";
         $o = (string) ob_get_clean();
         return $o;
     }
