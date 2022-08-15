@@ -21,6 +21,8 @@
 
 namespace Webcamviewer;
 
+use stdClass;
+
 final class ShowInfo
 {
     /** @var string */
@@ -44,29 +46,37 @@ final class ShowInfo
     }
 
     /**
-     * @return array<string,string>
+     * @return array<stdClass>
      */
     private function getSystemChecks(): array
     {
         $phpVersion = "7.0.0";
         $xhVersion = "1.7.0";
         $checks = array();
-        $checks[sprintf($this->view->text('syscheck_phpversion'), $phpVersion)]
-            = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'xh_success' : 'xh_fail';
+        $checks[] = (object) [
+            "label" => sprintf($this->view->text('syscheck_phpversion'), $phpVersion),
+            "class" => version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'xh_success' : 'xh_fail',
+        ];
         foreach (array('json') as $ext) {
-            $checks[sprintf($this->view->text('syscheck_extension'), $ext)]
-                = extension_loaded($ext) ? 'xh_success' : 'xh_fail';
+            $checks[] = (object) [
+                "label" => sprintf($this->view->text('syscheck_extension'), $ext),
+                "class" => extension_loaded($ext) ? 'xh_success' : 'xh_fail',
+            ];
         }
-        $checks[sprintf($this->view->text('syscheck_xhversion'), $xhVersion)]
+        $checks[] = (object) [
+            "label" => sprintf($this->view->text('syscheck_xhversion'), $xhVersion),
             // @phpstan-ignore-next-line
-            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "xh_success" : "xh_fail";
+            "class" => version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "xh_success" : "xh_fail",
+        ];
         $folders = array();
         foreach (array('config/', 'languages/') as $folder) {
             $folders[] = "{$this->pluginFolder}{$folder}";
         }
         foreach ($folders as $folder) {
-            $checks[sprintf($this->view->text('syscheck_writable'), $folder)]
-                = is_writable($folder) ? 'xh_success' : 'xh_warning';
+            $checks[] = (object) [
+                "label" => sprintf($this->view->text('syscheck_writable'), $folder),
+                "class" => is_writable($folder) ? 'xh_success' : 'xh_warning',
+            ];
         }
         return $checks;
     }
