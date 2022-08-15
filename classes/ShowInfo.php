@@ -37,13 +37,10 @@ final class ShowInfo
 
     public function __invoke(): string
     {
-        $labels = array(
-            'syscheck' => $this->view->text('syscheck_title')
-        );
-        $checks = $this->getSystemChecks();
-        $version = Plugin::VERSION;
-        $bag = compact('labels', 'checks', 'version');
-        return $this->view->render('info', $bag);
+        return $this->view->render('info', [
+            "checks" => $this->getSystemChecks(),
+            "version" => Plugin::VERSION,
+        ]);
     }
 
     /**
