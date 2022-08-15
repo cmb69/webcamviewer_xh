@@ -70,56 +70,10 @@ class Plugin
         $o .= print_plugin_admin('off');
         switch ($admin) {
             case '':
-                $o .= self::renderInfo();
+                $o .= (new ShowInfo())();
                 break;
             default:
                 $o .= plugin_admin_common();
         }
-    }
-
-    protected static function renderInfo(): string
-    {
-        global $pth, $plugin_tx;
-
-        $view = new View();
-        $ptx = $plugin_tx['webcamviewer'];
-        $labels = array(
-            'syscheck' => $ptx['syscheck_title']
-        );
-        $checks = self::getSystemChecks();
-        $version = self::VERSION;
-        $bag = compact('labels', 'checks', 'version');
-        return $view->render('info', $bag);
-    }
-
-    /**
-     * @return array<string,string>
-     */
-    protected static function getSystemChecks(): array
-    {
-        global $pth, $plugin_tx;
-
-        $ptx = $plugin_tx['webcamviewer'];
-        $phpVersion = "7.0.0";
-        $xhVersion = "1.7.0";
-        $checks = array();
-        $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
-            = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'xh_success' : 'xh_fail';
-        foreach (array('json') as $ext) {
-            $checks[sprintf($ptx['syscheck_extension'], $ext)]
-                = extension_loaded($ext) ? 'xh_success' : 'xh_fail';
-        }
-        $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
-            // @phpstan-ignore-next-line
-            = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "xh_success" : "xh_fail";
-        $folders = array();
-        foreach (array('config/', 'languages/') as $folder) {
-            $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
-        }
-        foreach ($folders as $folder) {
-            $checks[sprintf($ptx['syscheck_writable'], $folder)]
-                = is_writable($folder) ? 'xh_success' : 'xh_warning';
-        }
-        return $checks;
     }
 }
