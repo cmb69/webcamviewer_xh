@@ -28,11 +28,11 @@ final class View
      */
     public function render(string $_template, array $_bag): string
     {
-        global $pth, $cf;
+        global $pth;
 
         $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
             . $_template . '.php';
-        unset($pth, $cf);
+        unset($pth);
         extract($_bag);
         ob_start();
         include $_template;

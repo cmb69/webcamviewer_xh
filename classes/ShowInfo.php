@@ -25,7 +25,7 @@ final class ShowInfo
 {
     public function __invoke(): string
     {
-        global $pth, $plugin_tx;
+        global $plugin_tx;
 
         $view = new View();
         $ptx = $plugin_tx['webcamviewer'];
