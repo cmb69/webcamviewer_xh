@@ -23,19 +23,27 @@ namespace Webcamviewer;
 
 final class ShowInfo
 {
+    /** @var string */
+    private $pluginFolder;
+
+    /** @var View */
+    private $view;
+
+    public function __construct(string $pluginFolder, View $view)
+    {
+        $this->pluginFolder = $pluginFolder;
+        $this->view = $view;
+    }
+
     public function __invoke(): string
     {
-        global $pth, $plugin_tx;
-
-        $view = new View($pth['folder']['plugins'] . 'webcamviewer/views/');
-        $ptx = $plugin_tx['webcamviewer'];
         $labels = array(
-            'syscheck' => $ptx['syscheck_title']
+            'syscheck' => $this->view->text('syscheck_title')
         );
         $checks = $this->getSystemChecks();
         $version = Plugin::VERSION;
         $bag = compact('labels', 'checks', 'version');
-        return $view->render('info', $bag);
+        return $this->view->render('info', $bag);
     }
 
     /**
@@ -43,27 +51,24 @@ final class ShowInfo
      */
     private function getSystemChecks(): array
     {
-        global $pth, $plugin_tx;
-
-        $ptx = $plugin_tx['webcamviewer'];
         $phpVersion = "7.0.0";
         $xhVersion = "1.7.0";
         $checks = array();
-        $checks[sprintf($ptx['syscheck_phpversion'], $phpVersion)]
+        $checks[sprintf($this->view->text('syscheck_phpversion'), $phpVersion)]
             = version_compare(PHP_VERSION, $phpVersion) >= 0 ? 'xh_success' : 'xh_fail';
         foreach (array('json') as $ext) {
-            $checks[sprintf($ptx['syscheck_extension'], $ext)]
+            $checks[sprintf($this->view->text('syscheck_extension'), $ext)]
                 = extension_loaded($ext) ? 'xh_success' : 'xh_fail';
         }
-        $checks[sprintf($ptx['syscheck_xhversion'], $xhVersion)]
+        $checks[sprintf($this->view->text('syscheck_xhversion'), $xhVersion)]
             // @phpstan-ignore-next-line
             = version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") >= 0 ? "xh_success" : "xh_fail";
         $folders = array();
         foreach (array('config/', 'languages/') as $folder) {
-            $folders[] = $pth['folder']['plugins'] . 'webcamviewer/' . $folder;
+            $folders[] = "{$this->pluginFolder}{$folder}";
         }
         foreach ($folders as $folder) {
-            $checks[sprintf($ptx['syscheck_writable'], $folder)]
+            $checks[sprintf($this->view->text('syscheck_writable'), $folder)]
                 = is_writable($folder) ? 'xh_success' : 'xh_warning';
         }
         return $checks;

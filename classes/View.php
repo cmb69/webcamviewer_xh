@@ -26,9 +26,21 @@ final class View
     /** @var string */
     private $viewFolder;
 
-    public function __construct(string $viewFolder)
+    /** @var array<string,string> */
+    private $lang;
+
+    /**
+     * @param array<string,string> $lang
+     */
+    public function __construct(string $viewFolder, array $lang)
     {
         $this->viewFolder = $viewFolder;
+        $this->lang = $lang;
+    }
+
+    public function text(string $key): string
+    {
+        return $this->lang[$key];
     }
 
     /**

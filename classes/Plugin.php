@@ -65,12 +65,13 @@ class Plugin
      */
     protected static function handleAdministration()
     {
-        global $admin, $o;
+        global $pth, $admin, $plugin_tx, $o;
 
         $o .= print_plugin_admin('off');
         switch ($admin) {
             case '':
-                $o .= (new ShowInfo())();
+                $view = new View("{$pth['folder']['plugins']}webcamviewer/views/", $plugin_tx['webcamviewer']);
+                $o .= (new ShowInfo("{$pth['folder']['plugins']}webcamviewer/", $view))();
                 break;
             default:
                 $o .= plugin_admin_common();
