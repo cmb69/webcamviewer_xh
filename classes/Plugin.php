@@ -71,7 +71,7 @@ class Plugin
         switch ($admin) {
             case '':
                 $view = new View("{$pth['folder']['plugins']}webcamviewer/views/", $plugin_tx['webcamviewer']);
-                $o .= (new ShowInfo("{$pth['folder']['plugins']}webcamviewer/", $view))();
+                $o .= (new ShowInfo("{$pth['folder']['plugins']}webcamviewer/", new SystemChecker(), $view))();
                 break;
             default:
                 $o .= plugin_admin_common();
