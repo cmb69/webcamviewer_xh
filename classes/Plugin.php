@@ -81,6 +81,7 @@ class Plugin
     {
         global $pth, $plugin_tx;
 
+        $view = new View();
         $ptx = $plugin_tx['webcamviewer'];
         $labels = array(
             'syscheck' => $ptx['syscheck_title']
@@ -88,7 +89,7 @@ class Plugin
         $checks = self::getSystemChecks();
         $version = self::VERSION;
         $bag = compact('labels', 'checks', 'version');
-        return self::render('info', $bag);
+        return $view->render('info', $bag);
     }
 
     /**
@@ -120,22 +121,5 @@ class Plugin
                 = is_writable($folder) ? 'xh_success' : 'xh_warning';
         }
         return $checks;
-    }
-
-    /**
-     * @param array<string,mixed> $_bag
-     */
-    protected static function render(string $_template, array $_bag): string
-    {
-        global $pth, $cf;
-
-        $_template = $pth['folder']['plugins'] . 'webcamviewer/views/'
-            . $_template . '.php';
-        unset($pth, $cf);
-        extract($_bag);
-        ob_start();
-        include $_template;
-        $o = (string) ob_get_clean();
-        return $o;
     }
 }
