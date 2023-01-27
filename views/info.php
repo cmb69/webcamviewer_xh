@@ -17,5 +17,5 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
 <h1>Webcamviewer <?=$version?></h1>
 <h2><?=$this->text('syscheck_title')?></h2>
 <?php foreach ($checks as $check):?>
-<p class="<?=$check["class"]?>"><?=$check["label"]?></p>
+<p class="<?=$this->esc($check["class"])?>"><?=$this->esc($check["label"])?></p>
 <?php endforeach?>

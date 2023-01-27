@@ -64,17 +64,17 @@ final class ShowInfo
         $xhVersion = "1.7.0";
         $checks = array();
         $checks[] = [
-            "label" => sprintf($this->view->text('syscheck_phpversion'), $phpVersion),
+            "label" => sprintf($this->lang['syscheck_phpversion'], $phpVersion),
             "class" => $this->systemChecker->checkVersion(PHP_VERSION, $phpVersion) ? 'xh_success' : 'xh_fail',
         ];
         foreach (array('json') as $ext) {
             $checks[] = [
-                "label" => sprintf($this->view->text('syscheck_extension'), $ext),
+                "label" => sprintf($this->lang['syscheck_extension'], $ext),
                 "class" => $this->systemChecker->checkExtension($ext) ? 'xh_success' : 'xh_fail',
             ];
         }
         $checks[] = [
-            "label" => sprintf($this->view->text('syscheck_xhversion'), $xhVersion),
+            "label" => sprintf($this->lang['syscheck_xhversion'], $xhVersion),
             "class" => $this->systemChecker->checkVersion(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion")
                 ? "xh_success"
                 : "xh_fail",
@@ -85,7 +85,7 @@ final class ShowInfo
         }
         foreach ($folders as $folder) {
             $checks[] = [
-                "label" => sprintf($this->view->text('syscheck_writable'), $folder),
+                "label" => sprintf($this->lang['syscheck_writable'], $folder),
                 "class" => $this->systemChecker->checkWritability($folder) ? 'xh_success' : 'xh_warning',
             ];
         }

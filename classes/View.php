@@ -40,7 +40,7 @@ final class View
 
     public function text(string $key): string
     {
-        return $this->lang[$key];
+        return $this->esc($this->lang[$key]);
     }
 
     /**
@@ -51,7 +51,14 @@ final class View
         extract($_bag);
         ob_start();
         include "{$this->viewFolder}{$_template}.php";
-        $o = (string) ob_get_clean();
-        return $o;
+        return (string) ob_get_clean();
+    }
+
+    /**
+     * @param string|int $input
+     */
+    public function esc($input): string
+    {
+        return XH_hsc((string) $input);
     }
 }
