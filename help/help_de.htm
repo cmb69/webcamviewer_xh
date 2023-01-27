@@ -1,115 +1,75 @@
 <!DOCTYPE html>
-<html lang="de">
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Webcamviewer_XH &ndash; Handbuch</title>
-<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Webcamviewer_XH – Benutzerhandbuch</title>
+  <style type="text/css">
+    body {
+        font-family: Georgia, serif;
+        line-height: 1.5;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        background: #ffffe1;
+        max-width: 32em;
+    }
+    p {
+        text-align: justify;
+    }
+    pre {
+        color: black;
+        background: #ffe;
+        overflow: auto;
+        padding: 0.2em 0.5em;
+        border: 1px solid silver;
+    }
+  </style>
 </head>
-
 <body>
-
-<h1>Webcamviewer_XH &ndash; ein CMSimple_XH Plugin</h1>
-<img src="../webcamviewer.png" alt="Webcam Download"
-     style="float: left; margin-right: 16px; width: 128px; height: 128px" >
-<p style="text-align: justify">Webcamviewer_XH ermöglicht es ein Bild
-anzuzeigen, das nach einem einstellbaren Intervall aktualisiert wird. Das Plugin
-ist vorgesehen, um den aktuellen Schnappschuss einer Webcam darzustellen, die
-das jeweils neuste Bild am selben Ort ablegt.</p>
-
-<ul id="nav">
-<li><a href="#requirements">Vorraussetzungen</a></li>
+<h1 id="webcamviewer_xh">Webcamviewer_XH</h1>
+<p>Webcamviewer_XH ermöglicht es ein Bild anzuzeigen, das nach einem einstellbaren Intervall aktualisiert wird. Das Plugin ist vorgesehen, um den aktuellen Schnappschuss einer Webcam darzustellen, die das jeweils neuste Bild am selben Ort ablegt.</p>
+<ul>
+<li><a href="#voraussetzungen">Voraussetzungen</a></li>
+<li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#settings">Einstellungen</a></li>
-<li><a href="#usage">Verwendung</a></li>
-<!--<li><a href="#limitations">Beschränkungen</a></li>-->
-<li><a href="#license">Lizenz</a></li>
-<li><a href="#credits">Danksagung</a></li>
+<li><a href="#einstellungen">Einstellungen</a></li>
+<li><a href="#verwendung">Verwendung</a></li>
+<li><a href="#problembehebung">Problembehebung</a></li>
+<li><a href="#lizenz">Lizenz</a></li>
+<li><a href="#danksagung">Danksagung</a></li>
 </ul>
-
-<div id="body">
-
-<p><strong>Bitte lesen Sie diese Dokumentation, <em>bevor</em> Sie auf Probleme
-stoßen!</strong></p>
-
-<section id="requirements">
-<h2>Vorraussetzungen</h2>
-<p>Webcamviewer_XH ist ein Plugin für CMSimple_XH. Es benötigt CMSimple_XH &ge;
-1.7.0 und PHP &ge; 7.0.0. JavaScript muss in einem zeitgemäßen Browser aktiviert sein,
-damit die Bilder automatisch aktualisiert werden.</p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-<section id="installation">
-<h2>Installation</h2>
-<p>Die Installation erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch. Im
-<a href="http://www.cmsimple-xh.org/wiki/doku.php/de:installation"> CMSimple_XH
-Wiki</a> finden sie ausführliche Hinweise.</p>
-<ol>
+<h2 id="voraussetzungen">Voraussetzungen</h2>
+<p>Webcamviewer_XH ist ein Plugin für CMSimple_XH. Es benötigt CMSimple_XH ≥ 1.7.0 und PHP &gt; 7.0.0. JavaScript muss in einem zeitgemäßen Browser aktiviert sein, damit die Bilder automatisch aktualisiert werden.</p>
+<h2 id="download">Download</h2>
+<p>Das <a href="https://github.com/cmb69/webcamviewer_xh/releases/latest">aktuelle Release</a> kann von Github herunter geladen werden.</p>
+<h2 id="installation">Installation</h2>
+<p>The Installation erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch. Im <a href="https://wiki.cmsimple-xh.org/de/?fuer-anwender/arbeiten-mit-dem-cms/plugins">CMSimple_XH-Wiki</a> finden Sie weitere Informationen.</p>
+<ol type="1">
 <li>Sichern Sie die Daten auf Ihrem Server.</li>
 <li>Entpacken Sie die ZIP-Datei auf Ihrem Computer.</li>
-<li>Laden Sie den gesamten Ordner webcamviewer/ auf Ihren Server in CMSimple_XHs
-Plugin-Ordner hoch.</li>
-<li>Vergeben Sie Schreibrechte für die Unterordner config/ und
-languages/.</li>
-<li>Gehen Sie zu "Webcamviewer" im Administrationsbereich, um zu prüfen, ob alle
-Voraussetzungen erfüllt sind.</li>
+<li>Laden Sie den gesamten Ordner <code>webcamviewer/</code> auf Ihren Server in den <code>plugins/</code> Ordner von CMSimple_XH hoch.</li>
+<li>Vergeben Sie Schreibrechte für die Unterordner <code>config/</code> und <code>languages/</code>.</li>
+<li>Gehen Sie zu <code>Webcamviewer</code> im Administrationsbereich, um zu prüfen, ob alle Voraussetzungen erfüllt sind.</li>
 </ol>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-<section id="settings">
-<h2>Einstellungen</h2>
-<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen
-CMSimple_XH-Plugins auch im Administrationsbereich der Homepage. Gehen Sie zu
-Plugins &rarr; Webcamviewer.</p>
-<p>Sie können die Voreinstellungen von Webcamviewer_XH unter "Konfiguration"
-ändern. Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den
-Einstellungen angezeigt.</p>
-<p>Die Lokalisierung wird unter "Sprache" vorgenommen. Sie können die
-Sprachtexte in Ihre eigene Sprache übersetzen, falls keine entsprechende
-Sprachdatei zur Verfügung steht, oder sie entsprechend Ihren Anforderungen
-anpassen.</p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-<section id="usage">
-<h2>Verwendung</h2>
-<p>Jedem Bild, das periodisch zum eingestellten Intervall aktualisiert werden
-soll, muss die CSS Klasse "webcamviewer" gegeben werden.</p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-<!--<section id="limitations">
-<h2>Beschränkungen</h2>
-<div class="toplink"><a href="#">back to top</a></div>
-</section>-->
-
-<section id="license">
-<h2>Lizenz</h2>
-<p>Webcamviewer_XH kann unter Einhaltung der <a
-href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> verwendet werden.</p>
-<p>&copy; 2012-2022 Christoph M. Becker</p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-<section id="credits">
-<h2>Danksagung</h2>
-<p>Webcamviewer wurde von wolfgang_58 inspiriert.</p>
-<p>Das Plugin-Icon wurde von <a href="http://www.mentalrey.it/">Alessandro
-Rei</a> gestaltet. Vielen Dank für die Veröffentlichung unter GPL.</p>
-<!--<p>Vielen Dank an die Community im <a
-href="http://www.cmsimpleforum.com/">CMSimple_XH-Forum</a> für Tipps, Anregungen
-und das Testen.</p>-->
-<p>Zu guter letzt vielen Dank an <a href="http://www.harteg.dk/">Peter
-Harteg</a> und alle Entwickler von <a
-href="http://www.cmsimple-xh.org/">CMSimple_XH</a>, ohne die dieses fantastische
-CMS nicht existieren würde.</p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-</section>
-
-</div>
-
+<h2 id="einstellungen">Einstellungen</h2>
+<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch im Administrationsbereich der Homepage. Gehen Sie zu <code>Plugins</code> → <code>Webcamviewer</code>.</p>
+<p>Sie können die Voreinstellungen von Webcamviewer_XH unter <code>Konfiguration</code> ändern. Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den Einstellungen angezeigt.</p>
+<p>Die Lokalisierung wird unter <code>Sprache</code> vorgenommen. Sie können die Sprachtexte in Ihre eigene Sprache übersetzen, falls keine entsprechende Sprachdatei zur Verfügung steht, oder sie entsprechend Ihren Anforderungen anpassen.</p>
+<h2 id="verwendung">Verwendung</h2>
+<p>Jedem Bild, das periodisch zum eingestellten Intervall aktualisiert werden soll, muss die CSS Klasse <code>webcamviewer</code> gegeben werden.</p>
+<h2 id="problembehebung">Problembehebung</h2>
+<p>Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf <a href="https://github.com/cmb69/webcamviewer_xh/issues">Github</a> oder im <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
+<h2 id="lizenz">Lizenz</h2>
+<p>Webcamviewer_XH ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.</p>
+<p>Die Veröffentlichung von Webcamviewer_XH erfolgt in der Hoffnung, dass es Ihnen von Nutzen sein wird, aber <em>ohne irgendeine Garantie</em>, sogar ohne die implizite Garantie der <em>Marktreife</em> oder der <em>Verwendbarkeit für einen bestimmten Zweck</em>. Details finden Sie in der GNU General Public License.</p>
+<p>Sie sollten ein Exemplar der GNU General Public License zusammen mit Webcamviewer_XH erhalten haben. Falls nicht, siehe <a href="https://www.gnu.org/licenses/" class="uri">https://www.gnu.org/licenses/</a>.</p>
+<p>© 2012-2022 Christoph M. Becker</p>
+<h2 id="danksagung">Danksagung</h2>
+<p>Webcamviewer wurde von <em>wolfgang_58</em> inspiriert.</p>
+<p>Das Plugin-Icon wurde von <a href="http://www.mentalrey.it/">Alessandro Rei</a> entworfen. Vielen Dank für die Veröffentlichung unter GPL.</p>
+<p>Und zu guter letzt vielen Dank an <a href="http://www.harteg.dk/">Peter Harteg</a>, den „Vater“ von CMSimple, und allen Entwicklern von <a href="https://www.cmsimple-xh.org/de/">CMSimple_XH</a> ohne die es dieses phantastische CMS nicht gäbe.</p>
 </body>
-
 </html>
