@@ -21,20 +21,26 @@
 
 namespace Webcamviewer;
 
-class SystemChecker
+use function XH_includeVar;
+use PHPUnit\Framework\TestCase;
+use ApprovalTests\Approvals;
+
+class ShowInfoTest extends TestCase
 {
-    public function checkVersion(string $actual, string $minimum): bool
+    public function testRendersPluginInfo(): void
     {
-        return version_compare($actual, $minimum) >= 0;
-    }
+        $systemCheckerStub = $this->createStub(SystemChecker::class);
+        $systemCheckerStub->method('checkVersion')->willReturn(true);
+        $systemCheckerStub->method('checkExtension')->willReturn(true);
+        $systemCheckerStub->method('checkWritability')->willReturn(true);
+        $subject = new ShowInfo(
+            "./",
+            $systemCheckerStub,
+            XH_includeVar("./languages/en.php", "plugin_tx")['webcamviewer']
+        );
 
-    public function checkExtension(string $extension): bool
-    {
-        return extension_loaded($extension);
-    }
+        $response = $subject();
 
-    public function checkWritability(string $path): bool
-    {
-        return is_writable($path);
+        Approvals::verifyString($response);
     }
 }

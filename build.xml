@@ -28,6 +28,14 @@
         </exec>
     </target>
 
+    <target name="test" description="runs developer tests">
+        <exec executable="phpunit" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="coverage" description="generates coverage report">
+        <exec command="phpunit --coverage-html tests/coverage" passthru="true" checkreturn="true"/>
+    </target>
+
     <target name="compat" description="checks compatibility with PHP_CompatInfo">
         <exec executable="phpcompatinfo" passthru="true" checkreturn="true">
             <arg line="analyser:run --ansi classes"/>
@@ -60,8 +68,10 @@
         <move todir="dist">
             <fileset dir="export">
                 <exclude name=".phive/**"/>
+                <exclude name="tests/**"/>
                 <exclude name="build.xml"/>
                 <exclude name="phpstan.*"/>
+                <exclude name="phpunit.xml"/>
                 <exclude name="teplad.xml"/>
             </fileset>
         </move>
