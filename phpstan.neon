@@ -3,8 +3,10 @@ parameters:
   paths:
     - classes/
     - views/
+    - tests/
     - index.php
   bootstrapFiles:
     - phpstan.php
   scanFiles:
     - ../../cmsimple/adminfuncs.php
+    - ../../cmsimple/functions.php

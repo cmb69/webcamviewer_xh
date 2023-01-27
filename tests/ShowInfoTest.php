@@ -33,10 +33,12 @@ class ShowInfoTest extends TestCase
         $systemCheckerStub->method('checkVersion')->willReturn(true);
         $systemCheckerStub->method('checkExtension')->willReturn(true);
         $systemCheckerStub->method('checkWritability')->willReturn(true);
+        $plugin_tx = XH_includeVar("./languages/en.php", "plugin_tx");
+        assert(is_array($plugin_tx));
         $subject = new ShowInfo(
             "./",
             $systemCheckerStub,
-            XH_includeVar("./languages/en.php", "plugin_tx")['webcamviewer']
+            $plugin_tx['webcamviewer']
         );
 
         $response = $subject();
