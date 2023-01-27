@@ -2,7 +2,7 @@
 
 const CMSIMPLE_XH_VERSION = "CMSimple_XH 1.7.5";
 
-const WEBCAMVIEWER_VERSION = "2.0";
+const WEBCAMVIEWER_VERSION = "2.0-dev";
 
 require_once "../../cmsimple/functions.php";
 

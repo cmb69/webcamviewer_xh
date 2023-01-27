@@ -26,6 +26,6 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
     exit;
 }
 
-const WEBCAMVIEWER_VERSION = "2.0";
+const WEBCAMVIEWER_VERSION = "2.0-dev";
 
 Dic::makeInitViewer()()->process();
