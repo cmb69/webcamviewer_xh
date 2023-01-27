@@ -42,8 +42,8 @@ class InitViewer
         );
         $json = json_encode($config, JSON_HEX_APOS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
         $jsfile = "{$this->pluginFolder}webcamviewer.min.js";
-        $hjs = "<meta name=\"webcamviewer_config\" content='$json'>"
-            . "<script type=\"module\" src=\"$jsfile\"></script>";
+        $hjs = "\n<meta name=\"webcamviewer_config\" content='$json'>"
+            . "\n<script type=\"module\" src=\"$jsfile\"></script>";
         return new Response("", $hjs);
     }
 }
