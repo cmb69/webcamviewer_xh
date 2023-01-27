@@ -67,9 +67,10 @@
     </exec>
     <move todir="dist">
       <fileset dir="export">
-        <exclude name=".phive/**"/>
+        <exclude name=".github/**"/>
         <exclude name="tests/**"/>
         <exclude name="build.xml"/>
+        <exclude name="composer.json"/>
         <exclude name="phpstan.*"/>
         <exclude name="phpunit.xml"/>
         <exclude name="teplad.xml"/>
