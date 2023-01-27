@@ -21,6 +21,11 @@
 
 use Webcamviewer\Dic;
 
+if (!defined("CMSIMPLE_XH_VERSION")) {
+    header("HTTP/1.1 403 Forbidden");
+    exit;
+}
+
 const WEBCAMVIEWER_VERSION = "1.1-dev";
 
 Dic::makeInitViewer()()->process();
