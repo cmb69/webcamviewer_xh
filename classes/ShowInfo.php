@@ -21,8 +21,6 @@
 
 namespace Webcamviewer;
 
-use stdClass;
-
 final class ShowInfo
 {
     /** @var string */
@@ -58,24 +56,24 @@ final class ShowInfo
     }
 
     /**
-     * @return array<stdClass>
+     * @return array<array{label:string,class:string}>
      */
     private function getSystemChecks(): array
     {
         $phpVersion = "7.0.0";
         $xhVersion = "1.7.0";
         $checks = array();
-        $checks[] = (object) [
+        $checks[] = [
             "label" => sprintf($this->view->text('syscheck_phpversion'), $phpVersion),
             "class" => $this->systemChecker->checkVersion(PHP_VERSION, $phpVersion) ? 'xh_success' : 'xh_fail',
         ];
         foreach (array('json') as $ext) {
-            $checks[] = (object) [
+            $checks[] = [
                 "label" => sprintf($this->view->text('syscheck_extension'), $ext),
                 "class" => $this->systemChecker->checkExtension($ext) ? 'xh_success' : 'xh_fail',
             ];
         }
-        $checks[] = (object) [
+        $checks[] = [
             "label" => sprintf($this->view->text('syscheck_xhversion'), $xhVersion),
             "class" => $this->systemChecker->checkVersion(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion")
                 ? "xh_success"
@@ -86,7 +84,7 @@ final class ShowInfo
             $folders[] = "{$this->pluginFolder}{$folder}";
         }
         foreach ($folders as $folder) {
-            $checks[] = (object) [
+            $checks[] = [
                 "label" => sprintf($this->view->text('syscheck_writable'), $folder),
                 "class" => $this->systemChecker->checkWritability($folder) ? 'xh_success' : 'xh_warning',
             ];
