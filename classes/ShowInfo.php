@@ -56,37 +56,43 @@ final class ShowInfo
     }
 
     /**
-     * @return array<array{label:string,class:string}>
+     * @return array<array{label:string,stateLabel:string,class:string}>
      */
     private function getSystemChecks(): array
     {
         $phpVersion = "7.0.0";
         $xhVersion = "1.7.0";
         $checks = array();
+        $state = $this->systemChecker->checkVersion(PHP_VERSION, $phpVersion) ? "success" : "fail";
         $checks[] = [
             "label" => sprintf($this->lang['syscheck_phpversion'], $phpVersion),
-            "class" => $this->systemChecker->checkVersion(PHP_VERSION, $phpVersion) ? 'xh_success' : 'xh_fail',
+            "stateLabel" => $this->lang["syscheck_$state"],
+            "class" => "xh_$state",
         ];
         foreach (array('json') as $ext) {
+            $state = $this->systemChecker->checkExtension($ext) ? "success" : "fail";
             $checks[] = [
                 "label" => sprintf($this->lang['syscheck_extension'], $ext),
-                "class" => $this->systemChecker->checkExtension($ext) ? 'xh_success' : 'xh_fail',
+                "stateLabel" => $this->lang["syscheck_$state"],
+                "class" => "xh_$state",
             ];
         }
+        $state = $this->systemChecker->checkVersion(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion") ? "success" : "fail";
         $checks[] = [
             "label" => sprintf($this->lang['syscheck_xhversion'], $xhVersion),
-            "class" => $this->systemChecker->checkVersion(CMSIMPLE_XH_VERSION, "CMSimple_XH $xhVersion")
-                ? "xh_success"
-                : "xh_fail",
+            "stateLabel" => $this->lang["syscheck_$state"],
+            "class" => "xh_$state",
         ];
         $folders = array();
         foreach (array('config/', 'languages/') as $folder) {
             $folders[] = "{$this->pluginFolder}{$folder}";
         }
         foreach ($folders as $folder) {
+            $state = $this->systemChecker->checkWritability($folder) ? "success" : "warning";
             $checks[] = [
                 "label" => sprintf($this->lang['syscheck_writable'], $folder),
-                "class" => $this->systemChecker->checkWritability($folder) ? 'xh_success' : 'xh_warning',
+                "stateLabel" => $this->lang["syscheck_$state"],
+                "class" => "xh_$state",
             ];
         }
         return $checks;

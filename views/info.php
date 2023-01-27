@@ -10,12 +10,12 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
 /**
  * @var View $this
  * @var string $version
- * @var array<array{label:string,class:string}> $checks
+ * @var array<array{label:string,stateLabel:string,class:string}> $checks
  */
 ?>
 
 <h1>Webcamviewer <?=$this->esc($version)?></h1>
 <h2><?=$this->text('syscheck_title')?></h2>
 <?php foreach ($checks as $check):?>
-<p class="<?=$this->esc($check["class"])?>"><?=$this->esc($check["label"])?></p>
+<p class="<?=$this->esc($check["class"])?>"><?=$this->esc($check["label"])?> ⇒ <?=$this->esc($check["stateLabel"])?></p>
 <?php endforeach?>
