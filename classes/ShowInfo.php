@@ -31,14 +31,21 @@ final class ShowInfo
     /** @var SystemChecker */
     private $systemChecker;
 
+    /** @var array<string> */
+    private $lang;
+
     /** @var View */
     private $view;
 
-    public function __construct(string $pluginFolder, SystemChecker $systemChecker, View $view)
+    /**
+     * @param array<string> $lang
+     */
+    public function __construct(string $pluginFolder, SystemChecker $systemChecker, array $lang)
     {
         $this->pluginFolder = $pluginFolder;
         $this->systemChecker = $systemChecker;
-        $this->view = $view;
+        $this->lang = $lang;
+        $this->view = new View("{$this->pluginFolder}views/", $this->lang);
     }
 
     public function __invoke(): string
