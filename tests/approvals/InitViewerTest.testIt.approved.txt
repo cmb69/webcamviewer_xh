@@ -1,0 +1,5 @@
+Webcamviewer\Response Object
+(
+    [output:Webcamviewer\Response:private] => 
+    [hjs:Webcamviewer\Response:private] => <meta name="webcamviewer_config" content='{"interval":60000}'><script type="module" src="./webcamviewer.min.js"></script>
+)

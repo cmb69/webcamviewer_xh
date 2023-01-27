@@ -50,7 +50,7 @@ class Plugin
             "{$pth['folder']['plugins']}webcamviewer/",
             $plugin_cf['webcamviewer']['interval']
         );
-        $controller();
+        $controller()->process();
     }
 
     protected static function isAdministrationRequested(): bool
@@ -73,7 +73,7 @@ class Plugin
                     new SystemChecker(),
                     $plugin_tx['webcamviewer']
                 );
-                $o .= $controller();
+                $o .= $controller()->process();
                 break;
             default:
                 $o .= plugin_admin_common();

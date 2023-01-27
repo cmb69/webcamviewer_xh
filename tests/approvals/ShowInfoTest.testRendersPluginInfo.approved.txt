@@ -1,4 +1,6 @@
-
+Webcamviewer\Response Object
+(
+    [output:Webcamviewer\Response:private] => 
 <h1>Webcamviewer 1.1-dev</h1>
 <h2>System check</h2>
 <p class="xh_success">PHP version &ge; 7.0.0</p>
@@ -6,3 +8,6 @@
 <p class="xh_success">CMSimple_XH version ≥ 1.7.0</p>
 <p class="xh_success">Folder './config/' writable</p>
 <p class="xh_success">Folder './languages/' writable</p>
+
+    [hjs:Webcamviewer\Response:private] => 
+)

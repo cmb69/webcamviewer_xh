@@ -21,27 +21,16 @@
 
 namespace Webcamviewer;
 
-use function XH_includeVar;
 use PHPUnit\Framework\TestCase;
 use ApprovalTests\Approvals;
 
-class ShowInfoTest extends TestCase
+class InitViewerTest extends TestCase
 {
-    public function testRendersPluginInfo(): void
+    public function testIt(): void
     {
-        $systemCheckerStub = $this->createStub(SystemChecker::class);
-        $systemCheckerStub->method('checkVersion')->willReturn(true);
-        $systemCheckerStub->method('checkExtension')->willReturn(true);
-        $systemCheckerStub->method('checkWritability')->willReturn(true);
-        $plugin_tx = XH_includeVar("./languages/en.php", "plugin_tx");
-        assert(is_array($plugin_tx));
-        $subject = new ShowInfo(
-            "./",
-            $systemCheckerStub,
-            $plugin_tx['webcamviewer']
-        );
+        $initViewer = new InitViewer("./", 60);
 
-        $response = $subject();
+        $response = $initViewer();
 
         Approvals::verifyString($response->representation());
     }

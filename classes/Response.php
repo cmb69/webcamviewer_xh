@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2012-2022 Christoph M. Becker
+ * Copyright 2023 Christoph M. Becker
  *
  * This file is part of Webcamviewer_XH.
  *
@@ -21,29 +21,36 @@
 
 namespace Webcamviewer;
 
-class InitViewer
+class Response
 {
     /** @var string */
-    private $pluginFolder;
+    private $output;
 
-    /** @var int */
-    private $interval;
+    /** @var string */
+    private $hjs;
 
-    public function __construct(string $pluginFolder, int $interval)
+    /**
+     * @param string $output
+     * @param string $hjs
+     */
+    public function __construct($output, $hjs = "")
     {
-        $this->pluginFolder = $pluginFolder;
-        $this->interval = $interval;
+        $this->output = $output;
+        $this->hjs = $hjs;
     }
 
-    public function __invoke(): Response
+    /** @return string */
+    public function process()
     {
-        $config = array(
-            'interval' => 1000 * $this->interval
-        );
-        $json = json_encode($config, JSON_HEX_APOS | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $jsfile = "{$this->pluginFolder}webcamviewer.min.js";
-        $hjs = "<meta name=\"webcamviewer_config\" content='$json'>"
-            . "<script type=\"module\" src=\"$jsfile\"></script>";
-        return new Response("", $hjs);
+        global $hjs;
+
+        $hjs .= $this->hjs;
+        return $this->output;
+    }
+
+    /** @return string */
+    public function representation()
+    {
+        return print_r($this, true);
     }
 }

@@ -48,12 +48,13 @@ final class ShowInfo
         $this->view = new View("{$this->pluginFolder}views/", $this->lang);
     }
 
-    public function __invoke(): string
+    public function __invoke(): Response
     {
-        return $this->view->render('info', [
+        $output = $this->view->render('info', [
             "checks" => $this->getSystemChecks(),
             "version" => Plugin::VERSION,
         ]);
+        return new Response($output);
     }
 
     /**
