@@ -52,7 +52,7 @@ final class ShowInfo
     {
         $output = $this->view->render('info', [
             "checks" => $this->getSystemChecks(),
-            "version" => Plugin::VERSION,
+            "version" => WEBCAMVIEWER_VERSION,
         ]);
         return new Response($output);
     }

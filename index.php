@@ -19,6 +19,17 @@
  * along with Webcamviewer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Webcamviewer\Plugin;
+use Webcamviewer\InitViewer;
 
-Plugin::dispatch();
+const WEBCAMVIEWER_VERSION = "1.1-dev";
+
+/**
+ * @var array<array<string>> $pth
+ * @var array<array<string>> $plugin_cf
+ */
+
+$temp = new InitViewer(
+    "{$pth['folder']['plugins']}webcamviewer/",
+    (int) $plugin_cf['webcamviewer']['interval']
+);
+$temp()->process();
