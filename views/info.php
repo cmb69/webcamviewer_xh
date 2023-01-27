@@ -1,8 +1,6 @@
 <?php
 
-namespace Webcamviewer;
-
-use stdClass;
+use Webcamviewer\View;
 
 /**
  * @var View $this
