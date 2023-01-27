@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2012-2022 Christoph M. Becker
+ * Copyright 2012-2023 Christoph M. Becker
  *
  * This file is part of Webcamviewer_XH.
  *
