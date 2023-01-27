@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright 2012-2022 Christoph M. Becker
+ * Copyright 2023 Christoph M. Becker
  *
  * This file is part of Webcamviewer_XH.
  *
@@ -19,8 +19,28 @@
  * along with Webcamviewer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Webcamviewer\Dic;
+namespace Webcamviewer;
 
-const WEBCAMVIEWER_VERSION = "1.1-dev";
+class Dic
+{
+    public static function makeInitViewer(): InitViewer
+    {
+        global $pth, $plugin_cf;
 
-Dic::makeInitViewer()()->process();
+        return new InitViewer(
+            "{$pth['folder']['plugins']}webcamviewer/",
+            (int) $plugin_cf['webcamviewer']['interval']
+        );
+    }
+
+    public static function makeShowInfo(): ShowInfo
+    {
+        global $pth, $plugin_tx;
+
+        return new ShowInfo(
+            "{$pth['folder']['plugins']}webcamviewer/",
+            new SystemChecker(),
+            $plugin_tx['webcamviewer']
+        );
+    }
+}

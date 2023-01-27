@@ -19,12 +19,9 @@
  * along with Webcamviewer_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Webcamviewer\ShowInfo;
-use Webcamviewer\SystemChecker;
+use Webcamviewer\Dic;
 
 /**
- * @var array<array<string>> $pth
- * @var array<array<string>> $plugin_tx
  * @var string $admin
  * @var string $o
  */
@@ -35,12 +32,7 @@ if (XH_wantsPluginAdministration('webcamviewer')) {
     $o .= print_plugin_admin('off');
     switch ($admin) {
         case '':
-            $temp = new ShowInfo(
-                "{$pth['folder']['plugins']}webcamviewer/",
-                new SystemChecker(),
-                $plugin_tx['webcamviewer']
-            );
-            $o .= $temp()->process();
+            $o .= Dic::makeShowInfo()()->process();
             break;
         default:
             $o .= plugin_admin_common();
